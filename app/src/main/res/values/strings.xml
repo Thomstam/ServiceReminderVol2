@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ServiceReminder</string>
+
+    <string-array name="notificationDates">
+        <item>1 day</item>
+        <item>1 week</item>
+        <item>2 weeks</item>
+    </string-array>
+
 </resources>

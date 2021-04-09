@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".FormsPackage.FormSetup"
+    tools:ignore="HardcodedText">
+
+    <Toolbar
+        android:id="@+id/formSetupToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+        android:title="Form Setup"
+        android:titleTextColor="@color/design_default_color_on_primary">
+
+        <ImageButton
+            android:id="@+id/completeForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/halfStandardMargin"
+            android:layout_marginEnd="@dimen/standardMargin"
+            android:layout_marginBottom="@dimen/halfStandardMargin"
+            android:background="@color/design_default_color_primary"
+            android:contentDescription="CompleteButton"
+            android:src="@drawable/ic_complete_icon" />
+    </Toolbar>
+
+
+    <ScrollView
+        android:id="@+id/formScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/standardMargin"
+        android:paddingEnd="@dimen/standardMargin"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vehicle Credentials:"
+                android:textSize="@dimen/OneAndHalfStandardTextSize"
+                android:layout_marginTop="@dimen/standardMargin"
+                />
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/platesOfVehicle"
+                    android:layout_gravity="bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="@dimen/standardMargin"
+                    android:autofillHints=""
+                    android:hint="Plates of Vehicle*"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLength="8"/>
+
+
+                <Spinner
+                    android:id="@+id/brandIcons"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_marginTop="@dimen/doubleStandardMargin"
+                    android:layout_marginStart="@dimen/doubleStandardMargin"
+                    android:spinnerMode="dropdown" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vehicle Type:"
+                android:textSize="@dimen/OneAndHalfStandardTextSize"
+                android:layout_marginTop="@dimen/standardMargin"
+                />
+
+            <RadioGroup
+                android:id="@+id/vehicleSelection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standardMargin"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/carVehicle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_car_vehicle"
+                    android:checked="true"
+                    />
+
+                <RadioButton
+                    android:id="@+id/truckVehicle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/doubleStandardMargin"
+                    android:drawableEnd="@drawable/ic_truck_vehicle" />
+
+                <RadioButton
+                    android:id="@+id/bikeVehicle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/doubleStandardMargin"
+                    android:drawableEnd="@drawable/ic_bike_vehicle" />
+
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Kms:"
+                android:textSize="@dimen/OneAndHalfStandardTextSize"
+                android:layout_marginTop="@dimen/standardMargin"
+                />
+
+            <EditText
+                android:id="@+id/currentKms"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="@dimen/standardMargin"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:hint="Vehicle Kms*"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service Kms:"
+                android:textSize="@dimen/OneAndHalfStandardTextSize"
+                android:layout_marginTop="@dimen/standardMargin"
+                />
+
+            <EditText
+                android:id="@+id/nextServiceKms"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="@dimen/standardMargin"
+                android:hint="Next service kms*"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vehicle Kms Per Day:"
+                android:textSize="@dimen/OneAndHalfStandardTextSize"
+                android:layout_marginTop="@dimen/standardMargin"
+                />
+
+            <EditText
+                android:id="@+id/kmsPerDay"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="@dimen/standardMargin"
+                android:hint="Average kms Per Day*"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vehicle Weekly Usage:"
+                android:textSize="@dimen/OneAndHalfStandardTextSize"
+                android:layout_marginTop="@dimen/standardMargin"
+                />
+
+            <EditText
+                android:id="@+id/daysOfUse"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="@dimen/standardMargin"
+                android:hint="Days of Use in Week*"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notification Before Service:"
+                android:textSize="@dimen/OneAndHalfStandardTextSize"
+                android:layout_marginTop="@dimen/standardMargin"
+                />
+
+            <Spinner
+                android:id="@+id/notificationTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standardMargin"
+                android:spinnerMode="dropdown"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time for The Day Of The Notification:"
+                android:textSize="@dimen/OneAndHalfStandardTextSize"
+                android:layout_marginTop="@dimen/standardMargin"
+                />
+
+            <TimePicker
+                android:id="@+id/timeForTheNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standardMargin"
+                android:timePickerMode="spinner"/>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+</LinearLayout>
