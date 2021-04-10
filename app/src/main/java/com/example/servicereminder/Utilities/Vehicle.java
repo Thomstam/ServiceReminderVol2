@@ -38,6 +38,18 @@ public class Vehicle implements Parcelable {
         notificationTime = in.readLong();
     }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(platesOfVehicle);
+        dest.writeString(typeOfVehicle);
+        dest.writeInt(brandIcon);
+        dest.writeInt(currentKms);
+        dest.writeInt(serviceKms);
+        dest.writeInt(kmsPerDay);
+        dest.writeInt(usagePerWeek);
+        dest.writeLong(notificationTime);
+    }
 
     public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
         @Override
@@ -127,11 +139,4 @@ public class Vehicle implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
-    }
-
-
 }
