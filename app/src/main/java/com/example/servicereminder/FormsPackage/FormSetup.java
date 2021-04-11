@@ -178,13 +178,14 @@ public class FormSetup extends AppCompatActivity {
             }
             Vehicle vehicle = new Vehicle(
                     platesOfVehicle.getText().toString(),
-                    Integer.parseInt(brandIconSelection.getSelectedItem().toString()),
+                    brands[brandIconSelection.getSelectedItemPosition()],
                     vehicleType,
                     Integer.parseInt(currentKms.getText().toString()),
                     Integer.parseInt(serviceKms.getText().toString()),
                     Integer.parseInt(averageKmsPerDay.getText().toString()),
                     Integer.parseInt(daysOfUse.getText().toString()),
-                    notificationTimeForTheService
+                    notificationTimeForTheService,
+                    notificationTime.getSelectedItem().toString()
             );
             completeActivity(vehicle);
         });

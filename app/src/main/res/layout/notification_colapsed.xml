@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:padding="5dp"
+    tools:ignore="HardcodedText">
+
+    <ImageView
+        android:id="@+id/brandNotificationIcon"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:contentDescription="BrandIcon"
+        android:src="@raw/chevrolet" />
+
+    <TextView
+        android:id="@+id/titleForVehiclePlates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/standardMargin"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/brandNotificationIcon"
+        android:text="Vehicle Plates:" />
+
+    <TextView
+        android:id="@+id/platesOfVehicleNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleForVehiclePlates"
+        android:layout_marginStart="@dimen/doubleStandardMargin"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@id/brandNotificationIcon"
+        android:text="NKK-8485" />
+
+    <TextView
+        android:id="@+id/serviceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/doubleStandardMargin"
+        android:text="Service In:" />
+
+    <TextView
+        android:id="@+id/notificationSpinnerSelection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/serviceTitle"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="40dp"
+        android:text="1 week" />
+
+</RelativeLayout>

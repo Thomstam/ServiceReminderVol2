@@ -14,8 +14,9 @@ public class Vehicle implements Parcelable {
     private int kmsPerDay;
     private int usagePerWeek;
     private long notificationTime;
+    private String notificationSpinnerTimeSelection;
 
-    public Vehicle(String platesOfVehicle, int brandIcon, String typeOfVehicle, int currentKms, int serviceKms, int kmsPerDay, int usagePerWeek, long notificationTime) {
+    public Vehicle(String platesOfVehicle, int brandIcon, String typeOfVehicle, int currentKms, int serviceKms, int kmsPerDay, int usagePerWeek, long notificationTime, String notificationSpinnerTimeSelection) {
         this.platesOfVehicle = platesOfVehicle;
         this.brandIcon = brandIcon;
         this.typeOfVehicle = typeOfVehicle;
@@ -24,6 +25,7 @@ public class Vehicle implements Parcelable {
         this.kmsPerDay = kmsPerDay;
         this.usagePerWeek = usagePerWeek;
         this.notificationTime = notificationTime;
+        this.notificationSpinnerTimeSelection = notificationSpinnerTimeSelection;
     }
 
     protected Vehicle(Parcel in) {
@@ -36,6 +38,7 @@ public class Vehicle implements Parcelable {
         kmsPerDay = in.readInt();
         usagePerWeek = in.readInt();
         notificationTime = in.readLong();
+        notificationSpinnerTimeSelection = in.readString();
     }
 
     @Override
@@ -49,6 +52,7 @@ public class Vehicle implements Parcelable {
         dest.writeInt(kmsPerDay);
         dest.writeInt(usagePerWeek);
         dest.writeLong(notificationTime);
+        dest.writeString(notificationSpinnerTimeSelection);
     }
 
     public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
@@ -62,6 +66,11 @@ public class Vehicle implements Parcelable {
             return new Vehicle[size];
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
     public int getId() {
         return id;
@@ -127,6 +136,14 @@ public class Vehicle implements Parcelable {
         this.notificationTime = notificationTime;
     }
 
+    public String getNotificationSpinnerTimeSelection() {
+        return notificationSpinnerTimeSelection;
+    }
+
+    public void setNotificationSpinnerTimeSelection(String notificationSpinnerTimeSelection) {
+        this.notificationSpinnerTimeSelection = notificationSpinnerTimeSelection;
+    }
+
     public int getBrandIcon() {
         return brandIcon;
     }
@@ -135,8 +152,5 @@ public class Vehicle implements Parcelable {
         this.brandIcon = brandIcon;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+
 }

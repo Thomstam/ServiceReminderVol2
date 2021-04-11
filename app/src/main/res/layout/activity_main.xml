@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/standardMargin"
     tools:context=".MainActivity"
-    tools:ignore="HardcodedText"
-    android:padding="@dimen/standardMargin">
+    tools:ignore="HardcodedText">
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/newFormButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="New Form Button"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/ic_add_icon"
-        />
+        android:contentDescription="New Form Button"
+        android:src="@drawable/ic_add_icon" />
 
 </RelativeLayout>
