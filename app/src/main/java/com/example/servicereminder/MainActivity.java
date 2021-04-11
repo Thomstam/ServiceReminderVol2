@@ -2,6 +2,7 @@ package com.example.servicereminder;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -11,9 +12,11 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.servicereminder.FormsPackage.FormSetup;
 import com.example.servicereminder.NotificationSetup.ServiceNotification;
+import com.example.servicereminder.NotificationSetup.SettingsActivity;
 import com.example.servicereminder.Utilities.Vehicle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         notificationChannel();
 
         newFormSetup();
+
+        setMenu();
     }
 
     private void newFormSetup() {
@@ -78,5 +83,23 @@ public class MainActivity extends AppCompatActivity {
         alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
                 testingTimeToNotify,
                 pendingIntent);
+    }
+
+    private void setMenu(){
+        Toolbar toolbar = findViewById(R.id.toolbarMain);
+        toolbar.inflateMenu(R.menu.main_activity_menu);
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.notificationSettings){
+                openSettingPanel();
+            }else if (item.getItemId() == R.id.about){
+                Toast.makeText(this, "Open About Activity", Toast.LENGTH_SHORT).show();
+            }
+            return false;
+        });
+    }
+
+    private void openSettingPanel(){
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(intent);
     }
 }

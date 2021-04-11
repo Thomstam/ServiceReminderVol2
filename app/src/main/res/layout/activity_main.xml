@@ -4,9 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/standardMargin"
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+        app:title="Service Reminder"
+        >
+
+
+    </androidx.appcompat.widget.Toolbar>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -16,6 +26,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:contentDescription="New Form Button"
-        android:src="@drawable/ic_add_icon" />
+        android:src="@drawable/ic_add_icon"
+        android:layout_marginEnd="@dimen/doubleStandardMargin"
+        android:layout_marginBottom="@dimen/standardMargin"/>
 
 </RelativeLayout>

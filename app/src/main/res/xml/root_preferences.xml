@@ -1,0 +1,29 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Notification Settings">
+
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="vibration"
+            app:summary="Notification With Vibration"
+            app:title="Vibration" />
+
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="@string/soundPreference"
+            app:summary="Notification With Sound Of Your Choice"
+            app:title="Sound" />
+
+        <ListPreference
+            app:defaultValue="R.raw.done_for_you"
+            app:dependency="@string/soundPreference"
+            app:entries="@array/notificationSoundsEntries"
+            app:entryValues="@array/notificationSoundsValues"
+            app:isPreferenceVisible="true"
+            app:key="notificationSounds"
+            app:title="Choose Notification Sound" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

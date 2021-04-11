@@ -15,8 +15,9 @@ public class Vehicle implements Parcelable {
     private int usagePerWeek;
     private long notificationTime;
     private String notificationSpinnerTimeSelection;
+    private String dateOfTheService;
 
-    public Vehicle(String platesOfVehicle, int brandIcon, String typeOfVehicle, int currentKms, int serviceKms, int kmsPerDay, int usagePerWeek, long notificationTime, String notificationSpinnerTimeSelection) {
+    public Vehicle(String platesOfVehicle, int brandIcon, String typeOfVehicle, int currentKms, int serviceKms, int kmsPerDay, int usagePerWeek, long notificationTime, String notificationSpinnerTimeSelection, String dateOfTheService) {
         this.platesOfVehicle = platesOfVehicle;
         this.brandIcon = brandIcon;
         this.typeOfVehicle = typeOfVehicle;
@@ -26,6 +27,7 @@ public class Vehicle implements Parcelable {
         this.usagePerWeek = usagePerWeek;
         this.notificationTime = notificationTime;
         this.notificationSpinnerTimeSelection = notificationSpinnerTimeSelection;
+        this.dateOfTheService = dateOfTheService;
     }
 
     protected Vehicle(Parcel in) {
@@ -39,6 +41,7 @@ public class Vehicle implements Parcelable {
         usagePerWeek = in.readInt();
         notificationTime = in.readLong();
         notificationSpinnerTimeSelection = in.readString();
+        dateOfTheService = in.readString();
     }
 
     @Override
@@ -53,6 +56,7 @@ public class Vehicle implements Parcelable {
         dest.writeInt(usagePerWeek);
         dest.writeLong(notificationTime);
         dest.writeString(notificationSpinnerTimeSelection);
+        dest.writeString(dateOfTheService);
     }
 
     public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {

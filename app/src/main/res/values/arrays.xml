@@ -1,0 +1,31 @@
+<resources>
+
+    <string-array name="notificationDates">
+        <item>1 day</item>
+        <item>1 week</item>
+        <item>2 weeks</item>
+    </string-array>
+
+
+    <string-array name="notificationSoundsEntries">
+        <item>Done for You</item>
+        <item>Goes Without You</item>
+    </string-array>
+
+    <string-array name="notificationSoundsValues">
+        <item>Done for You</item>
+        <item>Goes Without You</item>
+    </string-array>
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Reply</item>
+        <item>Reply to all</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>reply</item>
+        <item>reply_all</item>
+    </string-array>
+
+
+</resources>

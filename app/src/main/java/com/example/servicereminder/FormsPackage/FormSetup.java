@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -176,17 +175,23 @@ public class FormSetup extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Vehicle vehicle = new Vehicle(
-                    platesOfVehicle.getText().toString(),
-                    brands[brandIconSelection.getSelectedItemPosition()],
-                    vehicleType,
-                    Integer.parseInt(currentKms.getText().toString()),
-                    Integer.parseInt(serviceKms.getText().toString()),
-                    Integer.parseInt(averageKmsPerDay.getText().toString()),
-                    Integer.parseInt(daysOfUse.getText().toString()),
-                    notificationTimeForTheService,
-                    notificationTime.getSelectedItem().toString()
-            );
+            Vehicle vehicle = null;
+            try {
+                vehicle = new Vehicle(
+                        platesOfVehicle.getText().toString(),
+                        brands[brandIconSelection.getSelectedItemPosition()],
+                        vehicleType,
+                        Integer.parseInt(currentKms.getText().toString()),
+                        Integer.parseInt(serviceKms.getText().toString()),
+                        Integer.parseInt(averageKmsPerDay.getText().toString()),
+                        Integer.parseInt(daysOfUse.getText().toString()),
+                        notificationTimeForTheService,
+                        notificationTime.getSelectedItem().toString(),
+                        setDayForTheNotification().toString()
+                );
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             completeActivity(vehicle);
         });
     }
