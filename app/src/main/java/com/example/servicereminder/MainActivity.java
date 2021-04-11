@@ -3,6 +3,8 @@ package com.example.servicereminder;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -18,13 +20,17 @@ import com.example.servicereminder.FormsPackage.FormSetup;
 import com.example.servicereminder.NotificationSetup.ServiceNotification;
 import com.example.servicereminder.NotificationSetup.SettingsActivity;
 import com.example.servicereminder.Utilities.Vehicle;
+import com.example.servicereminder.Utilities.VehicleRecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private final static int REQUEST_FORM_SETUP = 101;
     private final static String NAME_FOR_NOTIFICATION_CHANNEL = "DefaultNotificationChannel";
     private final static String ID_FOR_NOTIFICATION_CHANNEL = "ServiceReminder";
+    private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 assert data != null;
                 Vehicle vehicle = (Vehicle) data.getExtras().get("Vehicle");
+                vehicles.add(vehicle);
                 setNotificationTime(vehicle);
             }
         }
@@ -101,5 +108,13 @@ public class MainActivity extends AppCompatActivity {
     private void openSettingPanel(){
         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(intent);
+    }
+//needs initialization
+    private void initReyclerView(){
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        VehicleRecyclerView adapter = new VehicleRecyclerView();
+        adapter.setVehicles(vehicles);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/halfStandardMargin"
+    android:id="@+id/relative_layout"
+    tools:ignore="HardcodedText">
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/vehicle_brand"/>
+
+    <ImageView
+        android:layout_width="@dimen/standardTextSize"
+        android:layout_height="@dimen/standardTextSize"
+        android:layout_marginTop="@dimen/halfStandardMargin"
+        android:layout_marginStart="@dimen/standardMargin"
+        android:layout_toEndOf="@id/vehicle_brand"
+        android:id="@+id/vehicle_img"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/standardMargin"
+        android:layout_marginTop="@dimen/halfStandardMargin"
+        android:layout_toRightOf="@id/vehicle_brand"
+        android:layout_below="@id/vehicle_img"
+        android:id="@+id/plates_num"
+        android:text="ZZZ 9999"
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/halfStandardMargin"
+        android:layout_marginEnd="@dimen/halfStandardMargin"
+        android:text="Service date:"
+        android:id="@+id/sDate"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/halfStandardMargin"
+        android:layout_marginEnd="@dimen/standardMargin"
+        android:layout_below="@id/sDate"
+        android:text="1-1-2002"
+        android:id="@+id/date"/>
+
+</RelativeLayout>
