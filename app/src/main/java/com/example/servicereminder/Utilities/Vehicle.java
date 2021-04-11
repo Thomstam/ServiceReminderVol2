@@ -157,4 +157,12 @@ public class Vehicle implements Parcelable {
     }
 
 
+    public String getDateOfTheService() {
+        return dateOfTheService;
+    }
+
+    public void setDateOfTheService(String dateOfTheService) {
+        this.dateOfTheService = dateOfTheService;
+    }
+
 }
