@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerView.ViewHolder> {
 
     ArrayList<Vehicle> vehicles = new ArrayList<>();
-
+    private onItemClickListener listener;
 
     private Context context;
 
@@ -52,12 +52,6 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
         else {
             holder.vehicleImg.setImageResource(R.drawable.ic_bike_vehicle);
         }
-        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     @Override
@@ -71,7 +65,6 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
         ImageView vehicleImg;
         TextView platesNum;
         TextView date;
-        RelativeLayout relativeLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,7 +72,14 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
             vehicleImg = itemView.findViewById(R.id.vehicle_img);
             platesNum = itemView.findViewById(R.id.plates_num);
             date = itemView.findViewById(R.id.date);
-
+            itemView.setOnClickListener(v -> listener.onItemClick(vehicles.get(getAdapterPosition())));
         }
+    }
+    public interface onItemClickListener {
+        void onItemClick(Vehicle vehicle);
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener) {
+        this.listener = listener;
     }
 }

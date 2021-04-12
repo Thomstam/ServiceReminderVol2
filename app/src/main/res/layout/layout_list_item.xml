@@ -8,7 +8,8 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/halfStandardMargin"
     android:id="@+id/relative_layout"
-    tools:ignore="HardcodedText">
+    tools:ignore="HardcodedText"
+    android:layout_margin="@dimen/standardMargin">
 
     <ImageView
         android:layout_width="64dp"
@@ -19,29 +20,20 @@
         android:layout_width="@dimen/standardTextSize"
         android:layout_height="@dimen/standardTextSize"
         android:layout_marginTop="@dimen/halfStandardMargin"
-        android:layout_marginStart="@dimen/standardMargin"
+        android:layout_marginStart="@dimen/standardTextSize"
         android:layout_toEndOf="@id/vehicle_brand"
         android:id="@+id/vehicle_img"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/standardMargin"
+        android:layout_marginStart="@dimen/standardTextSize"
         android:layout_marginTop="@dimen/halfStandardMargin"
-        android:layout_toRightOf="@id/vehicle_brand"
+        android:layout_toEndOf="@id/vehicle_brand"
         android:layout_below="@id/vehicle_img"
+        android:textSize="@dimen/standardMargin"
         android:id="@+id/plates_num"
-        android:text="ZZZ 9999"
-         />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/halfStandardMargin"
-        android:layout_marginEnd="@dimen/halfStandardMargin"
-        android:text="Service date:"
-        android:id="@+id/sDate"/>
+        android:text="ZZZ 9999" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,8 +41,19 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/halfStandardMargin"
         android:layout_marginEnd="@dimen/standardMargin"
+        android:textSize="@dimen/standardMargin"
+        android:text="Service date:"
+        android:id="@+id/sDate"/>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/sDate"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/doubleStandardMargin"
         android:text="1-1-2002"
-        android:id="@+id/date"/>
+        android:textSize="@dimen/standardMargin" />
 
 </RelativeLayout>

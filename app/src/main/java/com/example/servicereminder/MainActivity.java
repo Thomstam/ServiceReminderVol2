@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private final static String NAME_FOR_NOTIFICATION_CHANNEL = "DefaultNotificationChannel";
     private final static String ID_FOR_NOTIFICATION_CHANNEL = "ServiceReminder";
     private ArrayList<Vehicle> vehicles = new ArrayList<>();
+    private VehicleRecyclerView adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
         newFormSetup();
 
         setMenu();
-    }
+
+        initReyclerView();
+        }
 
     private void newFormSetup() {
         FloatingActionButton floatingActionButton = findViewById(R.id.newFormButton);
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 assert data != null;
                 Vehicle vehicle = (Vehicle) data.getExtras().get("Vehicle");
                 vehicles.add(vehicle);
+                adapter.setVehicles(vehicles);
                 setNotificationTime(vehicle);
             }
         }
@@ -109,11 +113,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(intent);
     }
-//needs initialization
+
     private void initReyclerView(){
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        VehicleRecyclerView adapter = new VehicleRecyclerView();
-        adapter.setVehicles(vehicles);
+        adapter = new VehicleRecyclerView();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
