@@ -14,7 +14,8 @@
     <ImageView
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:id="@+id/vehicle_brand"/>
+        android:id="@+id/vehicle_brand"
+        android:contentDescription="Vehicle_Brand" />
 
     <ImageView
         android:layout_width="@dimen/standardTextSize"
@@ -22,7 +23,8 @@
         android:layout_marginTop="@dimen/halfStandardMargin"
         android:layout_marginStart="@dimen/standardTextSize"
         android:layout_toEndOf="@id/vehicle_brand"
-        android:id="@+id/vehicle_img"/>
+        android:id="@+id/vehicle_img"
+        android:contentDescription="Vehicle_Type" />
 
     <TextView
         android:layout_width="wrap_content"
