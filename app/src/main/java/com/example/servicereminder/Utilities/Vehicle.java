@@ -3,18 +3,44 @@ package com.example.servicereminder.Utilities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Vehicle implements Parcelable {
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+
+@Entity
+public class Vehicle implements Parcelable {
+    @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo(name="platesOfVehicle")
     private String platesOfVehicle;
+
+    @ColumnInfo(name="typeOfVehicle")
     private String typeOfVehicle;
+
+    @ColumnInfo(name="brandIcon")
     private int brandIcon;
+
+    @ColumnInfo(name="currentKms")
     private int currentKms;
+
+    @ColumnInfo(name="serviceKms")
     private int serviceKms;
+
+    @ColumnInfo(name="kmsPerDay")
     private int kmsPerDay;
+
+    @ColumnInfo(name="usagePerWeek")
     private int usagePerWeek;
+
+    @ColumnInfo(name="notificationTime")
     private long notificationTime;
+
+
     private String notificationSpinnerTimeSelection;
+
+    @ColumnInfo(name="dateOfTheService")
     private String dateOfTheService;
 
     public Vehicle(String platesOfVehicle, int brandIcon, String typeOfVehicle, int currentKms, int serviceKms, int kmsPerDay, int usagePerWeek, long notificationTime, String notificationSpinnerTimeSelection, String dateOfTheService) {
@@ -164,5 +190,7 @@ public class Vehicle implements Parcelable {
     public void setDateOfTheService(String dateOfTheService) {
         this.dateOfTheService = dateOfTheService;
     }
+
+
 
 }
