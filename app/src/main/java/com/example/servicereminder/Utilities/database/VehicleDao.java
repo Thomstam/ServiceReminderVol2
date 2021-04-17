@@ -13,6 +13,7 @@ import java.util.List;
 
 @Dao
 public interface VehicleDao {
+
     @Query("SELECT * FROM vehicle")
     List<Vehicle> getAllVehicles();
 

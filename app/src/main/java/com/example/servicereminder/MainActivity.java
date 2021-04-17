@@ -28,6 +28,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private final static int REQUEST_FORM_SETUP = 101;
+    private final static int REQUEST_EDIT_FORM = 102;
     private final static String NAME_FOR_NOTIFICATION_CHANNEL = "DefaultNotificationChannel";
     private final static String ID_FOR_NOTIFICATION_CHANNEL = "ServiceReminder";
     private ArrayList<Vehicle> vehicles = new ArrayList<>();
@@ -119,5 +120,14 @@ public class MainActivity extends AppCompatActivity {
         adapter = new VehicleRecyclerView();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void setRecyclerOnClick(){
+        adapter.setOnItemClickListener(vehicle -> {
+            Intent formEditActivity = new Intent(MainActivity.this, FormSetup.class);
+            formEditActivity.putExtra("isForEdit", true);
+            formEditActivity.putExtra("vehicleForEdit", vehicle);
+            startActivityForResult(formEditActivity, REQUEST_EDIT_FORM);
+        });
     }
 }

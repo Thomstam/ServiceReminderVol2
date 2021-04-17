@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -38,11 +39,27 @@ public class FormSetup extends AppCompatActivity {
     private TimePicker timeForTheNotification;
     private Spinner notificationTime;
     private Spinner brandIconSelection;
+    private boolean isForEdit;
+    private Vehicle vehicleForEdit;
+    private long notificationTimeForTheService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_setup);
+
+
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null){
+            isForEdit= bundle.getBoolean("IsForEdit");
+            vehicleForEdit = bundle.getParcelable("vehicleForEdit");
+            deleteButton();
+        }else {
+            setBackButton();
+        }
+
+
 
         setBrandIconSelection();
 
@@ -57,10 +74,48 @@ public class FormSetup extends AppCompatActivity {
         setCompleteForm();
     }
 
+    private void finishEditForm(String queryToExecute){
+        Intent intent = new Intent();
+        intent.putExtra("vehicle", vehicleForEdit);
+        intent.putExtra("QueryToExecute", queryToExecute);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
+    private void updateVehicle() throws ParseException {
+        vehicleForEdit.setPlatesOfVehicle(platesOfVehicle.getText().toString());
+        vehicleForEdit.setBrandIcon(brands[brandIconSelection.getSelectedItemPosition()]);
+        vehicleForEdit.setTypeOfVehicle(vehicleType);
+        vehicleForEdit.setCurrentKms(Integer.parseInt(currentKms.getText().toString()));
+        vehicleForEdit.setServiceKms(Integer.parseInt(serviceKms.getText().toString()));
+        vehicleForEdit.setKmsPerDay(Integer.parseInt(averageKmsPerDay.getText().toString()));
+        vehicleForEdit.setUsagePerWeek(Integer.parseInt(daysOfUse.getText().toString()));
+        vehicleForEdit.setNotificationTime(notificationTimeForTheService);
+        vehicleForEdit.setNotificationSpinnerTimeSelection(notificationTime.getSelectedItem().toString());
+        vehicleForEdit.setDateOfTheService(setDayForTheNotification().toString());
+        finishEditForm("update");
+    }
+
+    private void deleteButton(){
+        ImageButton deleteButton = findViewById(R.id.deleteButton);
+        deleteButton.setVisibility(View.VISIBLE);
+        deleteButton.setOnClickListener(v -> finishEditForm("delete"));
+    }
+
+    private void setBackButton(){
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setVisibility(View.VISIBLE);
+        backButton.setOnClickListener(v -> finish());
+    }
+
     private void setBrandIconSelection() {
         brandIconSelection = findViewById(R.id.brandIcons);
         CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), brands);
         brandIconSelection.setAdapter(customAdapter);
+        if (isForEdit){
+            brandIconSelection.setPromptId(vehicleForEdit.getBrandIcon());
+        }
+
     }
 
     private void setNotificationSpinner() {
@@ -71,7 +126,18 @@ public class FormSetup extends AppCompatActivity {
 
     private void setVehicleRadioButton() {
         RadioGroup vehicleSelection = findViewById(R.id.vehicleSelection);
-        vehicleType = "Car";
+        if (isForEdit){
+            vehicleType = vehicleForEdit.getTypeOfVehicle();
+            if (vehicleType.equals("Car")) {
+                vehicleSelection.check(R.id.carVehicle);
+            } else if (vehicleType.equals("Truck")) {
+                vehicleSelection.check(R.id.truckVehicle);
+            } else {
+                vehicleSelection.check(R.id.bikeVehicle);
+            }
+        }else {
+            vehicleType = "Car";
+        }
         vehicleSelection.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.carVehicle) {
                 vehicleType = "Car";
@@ -96,6 +162,14 @@ public class FormSetup extends AppCompatActivity {
         daysOfUse = findViewById(R.id.daysOfUse);
         timeForTheNotification = findViewById(R.id.timeForTheNotification);
         timeForTheNotification.setIs24HourView(true);
+        if (isForEdit){
+            platesOfVehicle.setText(vehicleForEdit.getPlatesOfVehicle());
+            currentKms.setText(vehicleForEdit.getCurrentKms());
+            serviceKms.setText(vehicleForEdit.getServiceKms());
+            averageKmsPerDay.setText(vehicleForEdit.getKmsPerDay());
+            daysOfUse.setText(vehicleForEdit.getUsagePerWeek());
+
+        }
     }
 
     private long dayCalculatorForServiceInMills() {
@@ -164,7 +238,7 @@ public class FormSetup extends AppCompatActivity {
                 formScrollView.scrollTo(daysOfUse.getScrollX(), daysOfUse.getScrollY());
                 return;
             }
-            long notificationTimeForTheService = 0;
+            notificationTimeForTheService = 0;
             try {
                 if (notificationTimeInMills() <= System.currentTimeMillis()) {
                     daysOfUse.setError("Notification Time Error");
@@ -177,6 +251,9 @@ public class FormSetup extends AppCompatActivity {
             }
             Vehicle vehicle = null;
             try {
+                if (isForEdit){
+                    updateVehicle();
+                }
                 vehicle = new Vehicle(
                         platesOfVehicle.getText().toString(),
                         brands[brandIconSelection.getSelectedItemPosition()],

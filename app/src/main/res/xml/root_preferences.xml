@@ -10,10 +10,25 @@
             app:title="Vibration" />
 
         <SwitchPreference
+            android:defaultValue="true"
+            app:key="notificationLights"
+            app:summary="Displaying Light For the Notification"
+            app:title="Lights" />
+
+        <ListPreference
+            app:entries="@array/notificationLightsEntries"
+            app:entryValues="@array/notificationLightsValues"
+            android:defaultValue="Red"
+            app:key="notificationLightsList"
+            app:title="Choose Color" />
+
+
+        <SwitchPreference
             app:defaultValue="true"
             app:key="@string/soundPreference"
             app:summary="Notification With Sound Of Your Choice"
             app:title="Sound" />
+
 
         <ListPreference
             app:defaultValue="R.raw.done_for_you"

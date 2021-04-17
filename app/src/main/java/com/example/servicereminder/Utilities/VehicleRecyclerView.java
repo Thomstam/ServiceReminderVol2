@@ -75,6 +75,7 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
             itemView.setOnClickListener(v -> listener.onItemClick(vehicles.get(getAdapterPosition())));
         }
     }
+
     public interface onItemClickListener {
         void onItemClick(Vehicle vehicle);
     }

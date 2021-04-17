@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBUtilities {
+
     public static List<Vehicle> loadAllVehicles(Context appContext){
         AppDatabase db = AppDatabase.getDBInstance(appContext);
         List<Vehicle> vehicleList = db.vehicleDao().getAllVehicles();
