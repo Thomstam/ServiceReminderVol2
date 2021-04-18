@@ -3,6 +3,7 @@ package com.example.servicereminder.Utilities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -10,37 +11,34 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Vehicle implements Parcelable {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
-
-    @ColumnInfo(name="platesOfVehicle")
+    @PrimaryKey
+    @NonNull
     private String platesOfVehicle;
 
-    @ColumnInfo(name="typeOfVehicle")
+
     private String typeOfVehicle;
 
-    @ColumnInfo(name="brandIcon")
+
     private int brandIcon;
 
-    @ColumnInfo(name="currentKms")
+
     private int currentKms;
 
-    @ColumnInfo(name="serviceKms")
+
     private int serviceKms;
 
-    @ColumnInfo(name="kmsPerDay")
+
     private int kmsPerDay;
 
-    @ColumnInfo(name="usagePerWeek")
+
     private int usagePerWeek;
 
-    @ColumnInfo(name="notificationTime")
+
     private long notificationTime;
 
 
     private String notificationSpinnerTimeSelection;
 
-    @ColumnInfo(name="dateOfTheService")
     private String dateOfTheService;
 
     public Vehicle(String platesOfVehicle, int brandIcon, String typeOfVehicle, int currentKms, int serviceKms, int kmsPerDay, int usagePerWeek, long notificationTime, String notificationSpinnerTimeSelection, String dateOfTheService) {
@@ -57,7 +55,6 @@ public class Vehicle implements Parcelable {
     }
 
     protected Vehicle(Parcel in) {
-        id = in.readInt();
         platesOfVehicle = in.readString();
         typeOfVehicle = in.readString();
         brandIcon = in.readInt();
@@ -72,7 +69,6 @@ public class Vehicle implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
         dest.writeString(platesOfVehicle);
         dest.writeString(typeOfVehicle);
         dest.writeInt(brandIcon);
@@ -102,13 +98,6 @@ public class Vehicle implements Parcelable {
         return 0;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getPlatesOfVehicle() {
         return platesOfVehicle;

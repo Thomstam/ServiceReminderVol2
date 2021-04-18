@@ -3,6 +3,7 @@ package com.example.servicereminder;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,9 +22,11 @@ import com.example.servicereminder.NotificationSetup.ServiceNotification;
 import com.example.servicereminder.NotificationSetup.SettingsActivity;
 import com.example.servicereminder.Utilities.Vehicle;
 import com.example.servicereminder.Utilities.VehicleRecyclerView;
+import com.example.servicereminder.Utilities.database.AppDatabase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private final static String ID_FOR_NOTIFICATION_CHANNEL = "ServiceReminder";
     private ArrayList<Vehicle> vehicles = new ArrayList<>();
     private VehicleRecyclerView adapter;
+    private AppDatabase appDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         setMenu();
 
-        initReyclerView();
+        appDatabase = AppDatabase.getDBInstance(getApplicationContext());
+
+        initRecyclerView();
         }
 
     private void newFormSetup() {
@@ -115,11 +121,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void initReyclerView(){
+    private void initRecyclerView(){
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         adapter = new VehicleRecyclerView();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        appDatabase.vehicleDao().getAllVehicles().observe(this, new Observer<List<Vehicle>>() {
+            @Override
+            public void onChanged(List<Vehicle> vehicles) {
+                adapter.setVehicles(vehicles);
+            }
+        });
     }
 
     private void setRecyclerOnClick(){

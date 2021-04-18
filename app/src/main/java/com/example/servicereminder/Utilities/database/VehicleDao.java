@@ -1,10 +1,12 @@
 package com.example.servicereminder.Utilities.database;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.servicereminder.Utilities.Vehicle;
 
@@ -15,7 +17,7 @@ import java.util.List;
 public interface VehicleDao {
 
     @Query("SELECT * FROM vehicle")
-    List<Vehicle> getAllVehicles();
+    LiveData<List<Vehicle>> getAllVehicles();
 
     @Insert
     void insertVehicle(Vehicle...vehicles);
@@ -23,10 +25,14 @@ public interface VehicleDao {
     @Delete
     void deleteVehicle(Vehicle vehicle);
 
-    @Query("SELECT * FROM vehicle WHERE id=:id")
-    Vehicle findVehicle(int id);
+    @Update
+    void update(Vehicle vehicle);
+
 
     @Query("SELECT * FROM vehicle WHERE platesOfVehicle= :plates")
     Vehicle findVehicleWithPlates(String plates);
+
+    @Query("DELETE FROM vehicle WHERE platesOfVehicle= :plates")
+    void deleteVehicleWithPlates(String plates);
 
 }

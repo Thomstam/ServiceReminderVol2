@@ -14,10 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.servicereminder.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerView.ViewHolder> {
 
-    ArrayList<Vehicle> vehicles = new ArrayList<>();
+    List<Vehicle> vehicles = new ArrayList<>();
     private onItemClickListener listener;
 
     private Context context;
@@ -26,7 +27,7 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
     }
 
 
-    public void setVehicles(ArrayList<Vehicle> vehicles) {
+    public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
         notifyDataSetChanged();
     }
