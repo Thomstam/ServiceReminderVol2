@@ -31,7 +31,7 @@ public class ExampleInstrumentedTest {
         assertEquals("com.example.servicereminder", appContext.getPackageName());
     }
 
-/*
+
     @Test
     public void useAppContextDBTest() {// When running it inserts a new vehicle to the DB and test if the vehicle was inserted
         // Context of the app under test.
@@ -43,20 +43,18 @@ public class ExampleInstrumentedTest {
 
         assertEquals(vehicles.get(0).getPlatesOfVehicle(),v1.getPlatesOfVehicle());
     }
-
- *//*
     @Test
     public void useAppContextDBTestDelete(){ // When able to find deleted vehicle
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         Vehicle v1 = new Vehicle("18127",1,"car",100,180,5,3,7,"idk","29/5/2021");
         assertEquals(DBUtilities.deleteVehicleByPlates("18127",appContext),true);
-    }*/
-/*
+    }
+
     @Test
     public void useAppContextDBTestDeleteFails(){// When not able to find deleted vehicle
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         Vehicle v1 = new Vehicle("18127",1,"car",100,180,5,3,7,"idk","29/5/2021");
         assertEquals(DBUtilities.deleteVehicleByPlates("18127",appContext),false);
     }
-*/
+
 }
