@@ -1,6 +1,7 @@
 package com.example.servicereminder.FormsPackage;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -30,7 +31,7 @@ public class FormSetup extends AppCompatActivity {
     @SuppressLint("SimpleDateFormat")
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private String vehicleType;
-    private ScrollView formScrollView;
+    private NestedScrollView formScrollView;
     private EditText daysOfUse;
     private EditText averageKmsPerDay;
     private EditText serviceKms;
@@ -48,19 +49,15 @@ public class FormSetup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_setup);
 
-
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
-            isForEdit= bundle.getBoolean("IsForEdit");
+            isForEdit = true;
             vehicleForEdit = bundle.getParcelable("vehicleForEdit");
             deleteButton();
         }else {
             setBackButton();
         }
-
-
-
+        
         setBrandIconSelection();
 
         setNotificationSpinner();
@@ -115,7 +112,6 @@ public class FormSetup extends AppCompatActivity {
         if (isForEdit){
             brandIconSelection.setPromptId(vehicleForEdit.getBrandIcon());
         }
-
     }
 
     private void setNotificationSpinner() {
@@ -164,11 +160,10 @@ public class FormSetup extends AppCompatActivity {
         timeForTheNotification.setIs24HourView(true);
         if (isForEdit){
             platesOfVehicle.setText(vehicleForEdit.getPlatesOfVehicle());
-            currentKms.setText(vehicleForEdit.getCurrentKms());
-            serviceKms.setText(vehicleForEdit.getServiceKms());
-            averageKmsPerDay.setText(vehicleForEdit.getKmsPerDay());
-            daysOfUse.setText(vehicleForEdit.getUsagePerWeek());
-
+            currentKms.setText(String.valueOf(vehicleForEdit.getCurrentKms()));
+            serviceKms.setText(String.valueOf(vehicleForEdit.getServiceKms()));
+            averageKmsPerDay.setText(String.valueOf(vehicleForEdit.getKmsPerDay()));
+            daysOfUse.setText(String.valueOf(vehicleForEdit.getUsagePerWeek()));
         }
     }
 
@@ -264,8 +259,8 @@ public class FormSetup extends AppCompatActivity {
                         Integer.parseInt(daysOfUse.getText().toString()),
                         notificationTimeForTheService,
                         notificationTime.getSelectedItem().toString(),
-                        setDayForTheNotification().toString()
-                );
+                        sdf.format(dayCalculatorForServiceInMills() + System.currentTimeMillis()),
+                        false);
             } catch (ParseException e) {
                 e.printStackTrace();
             }

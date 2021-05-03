@@ -1,17 +1,17 @@
 package com.example.servicereminder.Utilities;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.servicereminder.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,22 +20,24 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
 
     List<Vehicle> vehicles = new ArrayList<>();
     private onItemClickListener listener;
+    private onFavoriteClickListener favoriteListener;
 
-    private Context context;
-
-    public VehicleRecyclerView(){
+    public VehicleRecyclerView() {
     }
-
 
     public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
         notifyDataSetChanged();
     }
 
+    public void notifyData(){
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -44,14 +46,17 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
         holder.brandImg.setImageResource(vehicles.get(position).getBrandIcon());
         holder.platesNum.setText(vehicles.get(position).getPlatesOfVehicle());
         holder.date.setText(vehicles.get(position).getDateOfTheService());
-        if (vehicles.get(position).getTypeOfVehicle().equals("Car")){
+        if (vehicles.get(position).getTypeOfVehicle().equals("Car")) {
             holder.vehicleImg.setImageResource(R.drawable.ic_car_vehicle);
-        }
-        else if (vehicles.get(position).getTypeOfVehicle().equals("Truck")){
+        } else if (vehicles.get(position).getTypeOfVehicle().equals("Truck")) {
             holder.vehicleImg.setImageResource(R.drawable.ic_truck_vehicle);
-        }
-        else {
+        } else {
             holder.vehicleImg.setImageResource(R.drawable.ic_bike_vehicle);
+        }
+        if (vehicles.get(position).isFavorite()){
+            holder.isFavorite.setImageResource(R.drawable.recycler_view_favorites_true);
+        }else {
+            holder.isFavorite.setImageResource(R.drawable.recycler_view_favorite_false);
         }
     }
 
@@ -61,11 +66,11 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         ImageView brandImg;
         ImageView vehicleImg;
         TextView platesNum;
         TextView date;
+        ImageButton isFavorite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,7 +78,9 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
             vehicleImg = itemView.findViewById(R.id.vehicle_img);
             platesNum = itemView.findViewById(R.id.plates_num);
             date = itemView.findViewById(R.id.date);
-            itemView.setOnClickListener(v -> listener.onItemClick(vehicles.get(getAdapterPosition())));
+            isFavorite = itemView.findViewById(R.id.favorites_button);
+            itemView.setOnClickListener(v -> listener.onItemClick(vehicles.get(getAbsoluteAdapterPosition())));
+            isFavorite.setOnClickListener(v -> favoriteListener.onFavoriteClick(vehicles.get(getAbsoluteAdapterPosition())));
         }
     }
 
@@ -81,7 +88,13 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
         void onItemClick(Vehicle vehicle);
     }
 
+    public interface onFavoriteClickListener{
+        void onFavoriteClick(Vehicle vehicle);
+    }
+
     public void setOnItemClickListener(onItemClickListener listener) {
         this.listener = listener;
     }
+
+    public void setOnFavoriteClickListener(onFavoriteClickListener favoriteListener){this.favoriteListener = favoriteListener;}
 }

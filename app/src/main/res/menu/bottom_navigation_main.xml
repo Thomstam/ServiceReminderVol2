@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/mainPanel"
+        android:icon="@drawable/main_activity_bottom_navigation_home"
+        android:title="Main Panel"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/favoritesPanel"
+        android:icon="@drawable/main_activity_bottom_navigation_favorites"
+        android:title="Favorites Panel"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/upcomingServices"
+        android:icon="@drawable/main_activity_bottom_navigation_upcoming_services"
+        android:title="Upcoming Services"
+        tools:ignore="HardcodedText" />
+
+</menu>

@@ -7,27 +7,32 @@
             app:defaultValue="true"
             app:key="vibration"
             app:summary="Notification With Vibration"
-            app:title="Vibration" />
+            app:title="Vibration"
+            android:icon="@drawable/settings_vibration"/>
 
         <SwitchPreference
             android:defaultValue="true"
             app:key="notificationLights"
             app:summary="Displaying Light For the Notification"
-            app:title="Lights" />
+            app:title="Lights"
+            android:icon="@drawable/settings_notification_light"/>
 
         <ListPreference
             app:entries="@array/notificationLightsEntries"
             app:entryValues="@array/notificationLightsValues"
             android:defaultValue="Red"
             app:key="notificationLightsList"
-            app:title="Choose Color" />
+            app:title="Color"
+            android:summary="Notification Color"
+            android:icon="@drawable/settings_notification_color"/>
 
 
         <SwitchPreference
             app:defaultValue="true"
             app:key="@string/soundPreference"
             app:summary="Notification With Sound Of Your Choice"
-            app:title="Sound" />
+            app:title="Sound"
+            android:icon="@drawable/settings_sound_boolean"/>
 
 
         <ListPreference
@@ -37,7 +42,8 @@
             app:entryValues="@array/notificationSoundsValues"
             app:isPreferenceVisible="true"
             app:key="notificationSounds"
-            app:title="Choose Notification Sound" />
+            app:title="Choose Notification Sound"
+            android:icon="@drawable/settings_sound"/>
 
     </PreferenceCategory>
 

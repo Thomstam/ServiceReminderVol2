@@ -1,4 +1,4 @@
-package com.example.servicereminder.Utilities.database;
+package com.example.servicereminder.database;
 
 
 import androidx.lifecycle.LiveData;
@@ -10,7 +10,6 @@ import androidx.room.Update;
 
 import com.example.servicereminder.Utilities.Vehicle;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -20,19 +19,12 @@ public interface VehicleDao {
     LiveData<List<Vehicle>> getAllVehicles();
 
     @Insert
-    void insertVehicle(Vehicle...vehicles);
+    void insertVehicle(Vehicle vehicle);
 
     @Delete
     void deleteVehicle(Vehicle vehicle);
 
     @Update
     void update(Vehicle vehicle);
-
-
-    @Query("SELECT * FROM vehicle WHERE platesOfVehicle= :plates")
-    Vehicle findVehicleWithPlates(String plates);
-
-    @Query("DELETE FROM vehicle WHERE platesOfVehicle= :plates")
-    void deleteVehicleWithPlates(String plates);
 
 }

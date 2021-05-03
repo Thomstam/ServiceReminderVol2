@@ -1,12 +1,14 @@
 package com.example.servicereminder;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
@@ -15,28 +17,25 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
 
 import com.example.servicereminder.FormsPackage.FormSetup;
+import com.example.servicereminder.MainFragments.FavoritesScreenFragment;
+import com.example.servicereminder.MainFragments.HomeScreenFragments;
+import com.example.servicereminder.MainFragments.UpcomingServicesScreenFragment;
 import com.example.servicereminder.NotificationSetup.ServiceNotification;
-import com.example.servicereminder.NotificationSetup.SettingsActivity;
+import com.example.servicereminder.Utilities.SettingsFragment;
 import com.example.servicereminder.Utilities.Vehicle;
-import com.example.servicereminder.Utilities.VehicleRecyclerView;
-import com.example.servicereminder.Utilities.database.AppDatabase;
+import com.example.servicereminder.database.VehicleViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private VehicleViewModel vehicleViewModel;
     private final static int REQUEST_FORM_SETUP = 101;
-    private final static int REQUEST_EDIT_FORM = 102;
     private final static String NAME_FOR_NOTIFICATION_CHANNEL = "DefaultNotificationChannel";
     private final static String ID_FOR_NOTIFICATION_CHANNEL = "ServiceReminder";
-    private ArrayList<Vehicle> vehicles = new ArrayList<>();
-    private VehicleRecyclerView adapter;
-    private AppDatabase appDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
         setMenu();
 
-        appDatabase = AppDatabase.getDBInstance(getApplicationContext());
+        setBottomNavigationViewMain();
 
-        initRecyclerView();
-        }
+    }
 
     private void newFormSetup() {
         FloatingActionButton floatingActionButton = findViewById(R.id.newFormButton);
@@ -69,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 assert data != null;
                 Vehicle vehicle = (Vehicle) data.getExtras().get("Vehicle");
-                vehicles.add(vehicle);
-                adapter.setVehicles(vehicles);
+                vehicleViewModel.insert(vehicle);
                 setNotificationTime(vehicle);
             }
         }
@@ -88,6 +85,39 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
+    private void setBottomNavigationViewMain() {
+        BottomNavigationView bottomNavigationViewMain = findViewById(R.id.bottomNavigationMain);
+        bottomNavigationViewMain.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.mainPanel:
+                    openFragment(new HomeScreenFragments());
+                    return true;
+                case R.id.favoritesPanel:
+                    openFragment(new FavoritesScreenFragment());
+                    return true;
+                case R.id.upcomingServices:
+                    openFragment(new UpcomingServicesScreenFragment());
+                    return true;
+            }
+            return false;
+        });
+    }
+
+    private void openFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragmentContainer, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    private void settingsInit() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.settingsFragment, new SettingsFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
     private void setNotificationTime(Vehicle vehicle) {
         Intent intent = new Intent(MainActivity.this, ServiceNotification.class);
         Bundle bundle = new Bundle();
@@ -103,43 +133,12 @@ public class MainActivity extends AppCompatActivity {
                 pendingIntent);
     }
 
-    private void setMenu(){
-        Toolbar toolbar = findViewById(R.id.toolbarMain);
-        toolbar.inflateMenu(R.menu.main_activity_menu);
-        toolbar.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.notificationSettings){
-                openSettingPanel();
-            }else if (item.getItemId() == R.id.about){
-                Toast.makeText(this, "Open About Activity", Toast.LENGTH_SHORT).show();
-            }
-            return false;
-        });
-    }
-
-    private void openSettingPanel(){
-        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-        startActivity(intent);
-    }
-
-    private void initRecyclerView(){
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        adapter = new VehicleRecyclerView();
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        appDatabase.vehicleDao().getAllVehicles().observe(this, new Observer<List<Vehicle>>() {
-            @Override
-            public void onChanged(List<Vehicle> vehicles) {
-                adapter.setVehicles(vehicles);
-            }
-        });
-    }
-
-    private void setRecyclerOnClick(){
-        adapter.setOnItemClickListener(vehicle -> {
-            Intent formEditActivity = new Intent(MainActivity.this, FormSetup.class);
-            formEditActivity.putExtra("isForEdit", true);
-            formEditActivity.putExtra("vehicleForEdit", vehicle);
-            startActivityForResult(formEditActivity, REQUEST_EDIT_FORM);
-        });
+    private void setMenu() {
+        Toolbar toolbar = findViewById(R.id.mainToolBar);
+        setSupportActionBar(toolbar);
+        DrawerLayout drawer = findViewById(R.id.drawerMain);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle.setDrawerIndicatorEnabled(true);
+        toggle.syncState();
     }
 }

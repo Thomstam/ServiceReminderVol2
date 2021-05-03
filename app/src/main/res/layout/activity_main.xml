@@ -1,37 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/coordinatorMainLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    tools:ignore="HardcodedText">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/design_default_color_primary"
-        app:title="Service Reminder"
-        >
-
-    </androidx.appcompat.widget.Toolbar>
-    <androidx.recyclerview.widget.RecyclerView
+    <RelativeLayout
+        style="@style/Theme.ServiceReminder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycler_view"
-        android:layout_below="@+id/toolbarMain"
-        android:layout_above="@id/newFormButton"/>
+        tools:context=".MainActivity"
+        tools:ignore="HardcodedText">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/newFormButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:contentDescription="New Form Button"
-        android:src="@drawable/ic_add_icon"
-        android:layout_marginEnd="@dimen/doubleStandardMargin"
-        android:layout_marginBottom="@dimen/standardMargin"/>
+        <include
+            android:id="@+id/drawerMain"
+            layout="@layout/drawer_setting_main" />
 
-</RelativeLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomNavigationMain"
+            android:layout_marginTop="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/newFormButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/bottomNavigationMain"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/doubleStandardMargin"
+            android:layout_marginBottom="@dimen/standardMargin"
+            android:contentDescription="New Form Button"
+            android:src="@drawable/ic_add_icon"
+            app:layout_scrollFlags="scroll|enterAlways" />
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationMain"
+            style="@style/Theme.ServiceReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/basic"
+            app:menu="@menu/bottom_navigation_main" />
+
+    </RelativeLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

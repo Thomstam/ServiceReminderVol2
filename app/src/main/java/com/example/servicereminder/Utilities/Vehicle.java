@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -14,34 +13,19 @@ public class Vehicle implements Parcelable {
     @PrimaryKey
     @NonNull
     private String platesOfVehicle;
-
-
     private String typeOfVehicle;
-
-
     private int brandIcon;
-
-
     private int currentKms;
-
-
     private int serviceKms;
-
-
     private int kmsPerDay;
-
-
     private int usagePerWeek;
-
-
     private long notificationTime;
-
-
     private String notificationSpinnerTimeSelection;
-
     private String dateOfTheService;
+    private boolean isFavorite;
 
-    public Vehicle(String platesOfVehicle, int brandIcon, String typeOfVehicle, int currentKms, int serviceKms, int kmsPerDay, int usagePerWeek, long notificationTime, String notificationSpinnerTimeSelection, String dateOfTheService) {
+
+    public Vehicle(@NonNull String platesOfVehicle, int brandIcon, String typeOfVehicle, int currentKms, int serviceKms, int kmsPerDay, int usagePerWeek, long notificationTime, String notificationSpinnerTimeSelection, String dateOfTheService, boolean isFavorite) {
         this.platesOfVehicle = platesOfVehicle;
         this.brandIcon = brandIcon;
         this.typeOfVehicle = typeOfVehicle;
@@ -52,6 +36,7 @@ public class Vehicle implements Parcelable {
         this.notificationTime = notificationTime;
         this.notificationSpinnerTimeSelection = notificationSpinnerTimeSelection;
         this.dateOfTheService = dateOfTheService;
+        this.isFavorite = isFavorite;
     }
 
     protected Vehicle(Parcel in) {
@@ -65,6 +50,7 @@ public class Vehicle implements Parcelable {
         notificationTime = in.readLong();
         notificationSpinnerTimeSelection = in.readString();
         dateOfTheService = in.readString();
+        isFavorite = in.readInt() == 0;
     }
 
     @Override
@@ -79,6 +65,7 @@ public class Vehicle implements Parcelable {
         dest.writeLong(notificationTime);
         dest.writeString(notificationSpinnerTimeSelection);
         dest.writeString(dateOfTheService);
+        dest.writeInt(isFavorite ? 0 : 1);
     }
 
     public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
@@ -98,12 +85,12 @@ public class Vehicle implements Parcelable {
         return 0;
     }
 
-
+    @NonNull
     public String getPlatesOfVehicle() {
         return platesOfVehicle;
     }
 
-    public void setPlatesOfVehicle(String platesOfVehicle) {
+    public void setPlatesOfVehicle(@NonNull String platesOfVehicle) {
         this.platesOfVehicle = platesOfVehicle;
     }
 
@@ -171,7 +158,6 @@ public class Vehicle implements Parcelable {
         this.brandIcon = brandIcon;
     }
 
-
     public String getDateOfTheService() {
         return dateOfTheService;
     }
@@ -180,6 +166,13 @@ public class Vehicle implements Parcelable {
         this.dateOfTheService = dateOfTheService;
     }
 
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
 
 
 }

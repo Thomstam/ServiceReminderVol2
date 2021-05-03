@@ -19,7 +19,7 @@ public class ExampleUnitTest {
 
     @Test
     public void databasetest(){
-        Vehicle v1 = new Vehicle("18127",1,"car",100,180,5,3,7,"idk","29/5/2021");
+        Vehicle v1 = new Vehicle("18127",1,"car",100,180,5,3,7,"idk","29/5/2021", isFavorite);
 
     }
 }

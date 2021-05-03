@@ -4,6 +4,7 @@
     <dimen name="standardMargin" type="integer">16dp</dimen>
     <dimen name="doubleStandardMargin" type="integet">32dp</dimen>
     <dimen name="halfStandardMargin" type="integer">8dp</dimen>
+
     <dimen name="standardTextSize" type="integer">24sp</dimen>
     <dimen name="OneAndHalfStandardTextSize" type="integer">30sp</dimen>
     <dimen name="halfStandardTextSize" type="integer">12sp</dimen>
