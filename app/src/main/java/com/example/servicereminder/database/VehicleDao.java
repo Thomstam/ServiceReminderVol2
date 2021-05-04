@@ -1,6 +1,5 @@
 package com.example.servicereminder.database;
 
-
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -17,6 +16,9 @@ public interface VehicleDao {
 
     @Query("SELECT * FROM vehicle")
     LiveData<List<Vehicle>> getAllVehicles();
+
+    @Query("SELECT * FROM vehicle WHERE isFavorite = 1")
+    LiveData<List<Vehicle>> favoritesList();
 
     @Insert
     void insertVehicle(Vehicle vehicle);

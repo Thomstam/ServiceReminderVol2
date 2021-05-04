@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.servicereminder.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,11 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
         notifyDataSetChanged();
     }
 
-    public void notifyData(){
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void notifyData() {
         notifyDataSetChanged();
     }
 
@@ -53,9 +56,9 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
         } else {
             holder.vehicleImg.setImageResource(R.drawable.ic_bike_vehicle);
         }
-        if (vehicles.get(position).isFavorite()){
+        if (vehicles.get(position).isFavorite()) {
             holder.isFavorite.setImageResource(R.drawable.recycler_view_favorites_true);
-        }else {
+        } else {
             holder.isFavorite.setImageResource(R.drawable.recycler_view_favorite_false);
         }
     }
@@ -88,7 +91,7 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
         void onItemClick(Vehicle vehicle);
     }
 
-    public interface onFavoriteClickListener{
+    public interface onFavoriteClickListener {
         void onFavoriteClick(Vehicle vehicle);
     }
 
@@ -96,5 +99,7 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
         this.listener = listener;
     }
 
-    public void setOnFavoriteClickListener(onFavoriteClickListener favoriteListener){this.favoriteListener = favoriteListener;}
+    public void setOnFavoriteClickListener(onFavoriteClickListener favoriteListener) {
+        this.favoriteListener = favoriteListener;
+    }
 }

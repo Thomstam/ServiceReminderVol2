@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
@@ -21,6 +20,7 @@ import com.example.servicereminder.Utilities.Vehicle;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class FormSetup extends AppCompatActivity {
@@ -43,6 +43,7 @@ public class FormSetup extends AppCompatActivity {
     private boolean isForEdit;
     private Vehicle vehicleForEdit;
     private long notificationTimeForTheService;
+    private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +51,17 @@ public class FormSetup extends AppCompatActivity {
         setContentView(R.layout.activity_form_setup);
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null){
+        if (bundle.getBoolean("vehicleBoolean")) {
+            vehicles = bundle.getParcelableArrayList("vehicles");
+        }
+        if (bundle.getBoolean("isForEdit")) {
             isForEdit = true;
             vehicleForEdit = bundle.getParcelable("vehicleForEdit");
             deleteButton();
-        }else {
+        } else {
             setBackButton();
         }
-        
+
         setBrandIconSelection();
 
         setNotificationSpinner();
@@ -71,7 +75,7 @@ public class FormSetup extends AppCompatActivity {
         setCompleteForm();
     }
 
-    private void finishEditForm(String queryToExecute){
+    private void finishEditForm(String queryToExecute) {
         Intent intent = new Intent();
         intent.putExtra("vehicle", vehicleForEdit);
         intent.putExtra("QueryToExecute", queryToExecute);
@@ -93,13 +97,13 @@ public class FormSetup extends AppCompatActivity {
         finishEditForm("update");
     }
 
-    private void deleteButton(){
+    private void deleteButton() {
         ImageButton deleteButton = findViewById(R.id.deleteButton);
         deleteButton.setVisibility(View.VISIBLE);
         deleteButton.setOnClickListener(v -> finishEditForm("delete"));
     }
 
-    private void setBackButton(){
+    private void setBackButton() {
         ImageButton backButton = findViewById(R.id.backButton);
         backButton.setVisibility(View.VISIBLE);
         backButton.setOnClickListener(v -> finish());
@@ -109,7 +113,7 @@ public class FormSetup extends AppCompatActivity {
         brandIconSelection = findViewById(R.id.brandIcons);
         CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), brands);
         brandIconSelection.setAdapter(customAdapter);
-        if (isForEdit){
+        if (isForEdit) {
             brandIconSelection.setPromptId(vehicleForEdit.getBrandIcon());
         }
     }
@@ -122,7 +126,7 @@ public class FormSetup extends AppCompatActivity {
 
     private void setVehicleRadioButton() {
         RadioGroup vehicleSelection = findViewById(R.id.vehicleSelection);
-        if (isForEdit){
+        if (isForEdit) {
             vehicleType = vehicleForEdit.getTypeOfVehicle();
             if (vehicleType.equals("Car")) {
                 vehicleSelection.check(R.id.carVehicle);
@@ -131,7 +135,7 @@ public class FormSetup extends AppCompatActivity {
             } else {
                 vehicleSelection.check(R.id.bikeVehicle);
             }
-        }else {
+        } else {
             vehicleType = "Car";
         }
         vehicleSelection.setOnCheckedChangeListener((group, checkedId) -> {
@@ -158,7 +162,7 @@ public class FormSetup extends AppCompatActivity {
         daysOfUse = findViewById(R.id.daysOfUse);
         timeForTheNotification = findViewById(R.id.timeForTheNotification);
         timeForTheNotification.setIs24HourView(true);
-        if (isForEdit){
+        if (isForEdit) {
             platesOfVehicle.setText(vehicleForEdit.getPlatesOfVehicle());
             currentKms.setText(String.valueOf(vehicleForEdit.getCurrentKms()));
             serviceKms.setText(String.valueOf(vehicleForEdit.getServiceKms()));
@@ -246,7 +250,7 @@ public class FormSetup extends AppCompatActivity {
             }
             Vehicle vehicle = null;
             try {
-                if (isForEdit){
+                if (isForEdit) {
                     updateVehicle();
                 }
                 vehicle = new Vehicle(

@@ -1,4 +1,4 @@
-package com.example.servicereminder.Utilities;
+package com.example.servicereminder.DrawerMainContents;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;

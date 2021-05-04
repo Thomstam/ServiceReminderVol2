@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,22 +19,19 @@ import com.example.servicereminder.R;
 import com.example.servicereminder.Utilities.Vehicle;
 import com.example.servicereminder.Utilities.VehicleRecyclerView;
 import com.example.servicereminder.database.VehicleViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.Objects;
+import java.util.List;
 
 public class HomeScreenFragments extends Fragment {
 
 
-
-    public HomeScreenFragments(){
-        super (R.layout.main_activity_home_screen_fragment);
+    public HomeScreenFragments() {
+        super(R.layout.main_activity_home_screen_fragment);
     }
 
     private VehicleRecyclerView recyclerCustom;
     private final static int REQUEST_EDIT_FORM = 102;
-    private VehicleViewModel vehicleViewModel;
-    private FloatingActionButton favoriteButton;
+    protected VehicleViewModel vehicleViewModelHomeScreen;
 
 
     @Nullable
@@ -69,8 +64,8 @@ public class HomeScreenFragments extends Fragment {
     }
 
     private void setViewModel() {
-        vehicleViewModel = ViewModelProviders.of(this).get(VehicleViewModel.class);
-        vehicleViewModel.getReminders().observe(getViewLifecycleOwner(), vehicles -> recyclerCustom.setVehicles(vehicles));
+        vehicleViewModelHomeScreen = ViewModelProviders.of(this).get(VehicleViewModel.class);
+        vehicleViewModelHomeScreen.getStartScreenVehicles().observe(getViewLifecycleOwner(), vehicles -> recyclerCustom.setVehicles(vehicles));
     }
 
     private void setRecyclerOnClick() {
@@ -82,11 +77,15 @@ public class HomeScreenFragments extends Fragment {
         });
     }
 
-    private void setFavoriteOnClick(){
+    private void setFavoriteOnClick() {
         recyclerCustom.setOnFavoriteClickListener(vehicle -> {
             vehicle.setFavorite(!vehicle.isFavorite());
-            vehicleViewModel.update(vehicle);
+            vehicleViewModelHomeScreen.update(vehicle);
             recyclerCustom.notifyData();
         });
+    }
+
+    public List<Vehicle> getVehicles() {
+        return recyclerCustom.getVehicles();
     }
 }

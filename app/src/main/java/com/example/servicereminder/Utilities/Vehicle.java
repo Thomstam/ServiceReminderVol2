@@ -5,12 +5,16 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 
 @Entity
+        (indices = {@Index(value = {"platesOfVehicle"},
+                unique = true)})
 public class Vehicle implements Parcelable {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     @NonNull
     private String platesOfVehicle;
     private String typeOfVehicle;
@@ -40,6 +44,7 @@ public class Vehicle implements Parcelable {
     }
 
     protected Vehicle(Parcel in) {
+        id = in.readInt();
         platesOfVehicle = in.readString();
         typeOfVehicle = in.readString();
         brandIcon = in.readInt();
@@ -55,6 +60,7 @@ public class Vehicle implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(platesOfVehicle);
         dest.writeString(typeOfVehicle);
         dest.writeInt(brandIcon);
@@ -174,5 +180,11 @@ public class Vehicle implements Parcelable {
         isFavorite = favorite;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 }

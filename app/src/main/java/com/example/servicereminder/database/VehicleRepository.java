@@ -12,15 +12,21 @@ public class VehicleRepository {
 
     private final VehicleDao vehicleDao;
     private final LiveData<List<Vehicle>> startScreenVehicles;
+    private final LiveData<List<Vehicle>> favoritesScreenVehicle;
 
     public VehicleRepository(Application application) {
         VehicleDataBase vehicleDataBase = VehicleDataBase.getINSTANCE(application);
         vehicleDao = vehicleDataBase.vehicleDao();
         startScreenVehicles = vehicleDao.getAllVehicles();
+        favoritesScreenVehicle = vehicleDao.favoritesList();
     }
 
     public LiveData<List<Vehicle>> getStartScreenVehicles() {
         return startScreenVehicles;
+    }
+
+    public LiveData<List<Vehicle>> getFavoritesScreenVehicle() {
+        return favoritesScreenVehicle;
     }
 
     public void insert(Vehicle vehicle) {

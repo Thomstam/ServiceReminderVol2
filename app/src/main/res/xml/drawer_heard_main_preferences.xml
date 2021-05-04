@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.example.servicereminder.DrawerMainContents.NavigationHeaderPreferences
+        android:key="profile_picture"
+        app:layout="@layout/navigation_header_main"
+        android:summary=""/>
+
+    <EditTextPreference
+        android:key="companyName"
+        app:iconSpaceReserved="false"
+        app:isPreferenceVisible="false"/>
+
+    <EditTextPreference
+        android:key="profilePhotoUrl"
+        app:iconSpaceReserved="false"
+        app:isPreferenceVisible="false"/>
+
+</PreferenceScreen>

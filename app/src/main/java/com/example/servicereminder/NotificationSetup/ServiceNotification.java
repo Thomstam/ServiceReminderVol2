@@ -7,20 +7,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
 import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.preference.PreferenceManager;
 
-import com.example.servicereminder.MainActivity;
+import com.example.servicereminder.MainFragments.MainActivity;
 import com.example.servicereminder.R;
 import com.example.servicereminder.Utilities.Vehicle;
 
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static android.provider.Settings.System.getString;
 
 public class ServiceNotification extends BroadcastReceiver {
 
@@ -57,23 +54,24 @@ public class ServiceNotification extends BroadcastReceiver {
         builder = new NotificationCompat.Builder(context, ID_FOR_NOTIFICATION_CHANNEL)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setCustomContentView(remoteViews)
-                .setLights(lights.toArgb(), lights.toArgb(),lights.toArgb())
+                .setLights(lights.toArgb(), lights.toArgb(), lights.toArgb())
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
     }
 
-    private void setPreferences(Context context){
+    private void setPreferences(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (preferences.getString("notificationLightsList", "Red").equals("Red")){
+        if (preferences.getString("notificationLightsList", "Red").equals("Red")) {
             lights = Color.valueOf(Color.RED);
-        }else if (preferences.getString("notificationLightsList", "Red").equals("Blue")){
+        } else if (preferences.getString("notificationLightsList", "Red").equals("Blue")) {
             lights = Color.valueOf(Color.BLUE);
-        }else {
+        } else {
             lights = Color.valueOf(Color.WHITE);
         }
     }
+
     private void setNotificationLayout(RemoteViews remoteViews, Vehicle vehicle) {
         remoteViews.setTextViewText(R.id.platesOfVehicleNotification, vehicle.getPlatesOfVehicle());
         remoteViews.setImageViewResource(R.id.brandNotificationIcon, vehicle.getBrandIcon());

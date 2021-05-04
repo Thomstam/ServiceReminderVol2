@@ -1,4 +1,4 @@
-package com.example.servicereminder;
+package com.example.servicereminder.MainFragments;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -17,25 +17,28 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 
+import com.example.servicereminder.DrawerMainContents.DrawerHeaderFragment;
 import com.example.servicereminder.FormsPackage.FormSetup;
-import com.example.servicereminder.MainFragments.FavoritesScreenFragment;
-import com.example.servicereminder.MainFragments.HomeScreenFragments;
-import com.example.servicereminder.MainFragments.UpcomingServicesScreenFragment;
 import com.example.servicereminder.NotificationSetup.ServiceNotification;
-import com.example.servicereminder.Utilities.SettingsFragment;
+import com.example.servicereminder.DrawerMainContents.SettingsFragment;
+import com.example.servicereminder.R;
 import com.example.servicereminder.Utilities.Vehicle;
 import com.example.servicereminder.database.VehicleViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
-    private VehicleViewModel vehicleViewModel;
+    protected VehicleViewModel vehicleViewModel;
     private final static int REQUEST_FORM_SETUP = 101;
     private final static String NAME_FOR_NOTIFICATION_CHANNEL = "DefaultNotificationChannel";
     private final static String ID_FOR_NOTIFICATION_CHANNEL = "ServiceReminder";
+    private final HomeScreenFragments homeScreenFragments = new HomeScreenFragments();
+    private final FavoritesScreenFragment favoritesScreenFragment = new FavoritesScreenFragment();
+    private final UpcomingServicesScreenFragment upcomingServicesScreenFragment = new UpcomingServicesScreenFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +53,23 @@ public class MainActivity extends AppCompatActivity {
 
         setBottomNavigationViewMain();
 
+        settingsInit();
+
+        headerInit();
+
+        openFragment(homeScreenFragments);
     }
 
     private void newFormSetup() {
         FloatingActionButton floatingActionButton = findViewById(R.id.newFormButton);
         floatingActionButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, FormSetup.class);
+            ArrayList<Vehicle> tempList = (ArrayList<Vehicle>) homeScreenFragments.getVehicles();
+            if (tempList.size() > 0) {
+                intent.putParcelableArrayListExtra("vehicles", tempList);
+                intent.putExtra("vehicleBoolean", true);
+            }
+            intent.putExtra("isForEdit", false);
             startActivityForResult(intent, REQUEST_FORM_SETUP);
         });
     }
@@ -91,13 +105,13 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationViewMain.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.mainPanel:
-                    openFragment(new HomeScreenFragments());
+                    openFragment(homeScreenFragments);
                     return true;
                 case R.id.favoritesPanel:
-                    openFragment(new FavoritesScreenFragment());
+                    openFragment(favoritesScreenFragment);
                     return true;
                 case R.id.upcomingServices:
-                    openFragment(new UpcomingServicesScreenFragment());
+                    openFragment(upcomingServicesScreenFragment);
                     return true;
             }
             return false;
@@ -118,6 +132,14 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    private void headerInit() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.drawer_header_profile_settings, new DrawerHeaderFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+
     private void setNotificationTime(Vehicle vehicle) {
         Intent intent = new Intent(MainActivity.this, ServiceNotification.class);
         Bundle bundle = new Bundle();
@@ -136,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
     private void setMenu() {
         Toolbar toolbar = findViewById(R.id.mainToolBar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawerMain);
+        DrawerLayout drawer = findViewById(R.id.drawerMainActivity);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();

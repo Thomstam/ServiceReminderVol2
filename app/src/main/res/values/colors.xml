@@ -11,4 +11,5 @@
     <color name="basic">#C43C75</color>
     <color name="secondaryBasic">#3B528B</color>
     <color name="onFragmentsView">#E0E1E3</color>
+    <color name="DrawerHeader">#43351A</color>
 </resources>
