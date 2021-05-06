@@ -4,46 +4,49 @@
     <PreferenceCategory app:title="Notification Settings">
 
         <SwitchPreference
+            android:icon="@drawable/settings_vibration"
             app:defaultValue="true"
             app:key="vibration"
             app:summary="Notification With Vibration"
-            app:title="Vibration"
-            android:icon="@drawable/settings_vibration"/>
+            app:title="Vibration" />
 
         <SwitchPreference
             android:defaultValue="true"
+            android:icon="@drawable/settings_notification_light"
             app:key="notificationLights"
             app:summary="Displaying Light For the Notification"
-            app:title="Lights"
-            android:icon="@drawable/settings_notification_light"/>
+            app:title="Lights" />
 
         <ListPreference
+            android:defaultValue="Red"
+            android:dependency="notificationLights"
+            android:icon="@drawable/settings_notification_color"
+            android:summary="Notification Color"
             app:entries="@array/notificationLightsEntries"
             app:entryValues="@array/notificationLightsValues"
-            android:defaultValue="Red"
             app:key="notificationLightsList"
-            app:title="Color"
-            android:summary="Notification Color"
-            android:icon="@drawable/settings_notification_color"/>
+            app:title="Color" />
 
 
         <SwitchPreference
+            android:icon="@drawable/settings_sound_boolean"
             app:defaultValue="true"
             app:key="@string/soundPreference"
             app:summary="Notification With Sound Of Your Choice"
-            app:title="Sound"
-            android:icon="@drawable/settings_sound_boolean"/>
+            app:title="Sound" />
 
+        <Preference
+            android:dependency="@string/soundPreference"
+            android:icon="@drawable/settings_sound"
+            android:key="notificationSounds"
+            android:title="Choose Notification Sound" />
 
-        <ListPreference
-            app:defaultValue="R.raw.done_for_you"
-            app:dependency="@string/soundPreference"
-            app:entries="@array/notificationSoundsEntries"
-            app:entryValues="@array/notificationSoundsValues"
-            app:isPreferenceVisible="true"
-            app:key="notificationSounds"
-            app:title="Choose Notification Sound"
-            android:icon="@drawable/settings_sound"/>
+        <EditTextPreference
+            android:defaultValue="Got It Done"
+            android:key="SoundPreference"
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="false" />
+
 
     </PreferenceCategory>
 

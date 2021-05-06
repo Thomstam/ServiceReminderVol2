@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <com.example.servicereminder.DrawerMainContents.NavigationHeaderPreferences
+    <com.example.serviceReminder.drawerMainContents.NavigationHeaderPreferences
         android:key="profile_picture"
         app:layout="@layout/navigation_header_main"
         android:summary=""/>

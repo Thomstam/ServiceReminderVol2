@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.servicereminder">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.serviceReminder">
 
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
 
     <application
         android:allowBackup="true"
@@ -13,9 +17,11 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ServiceReminder">
-        <activity android:name=".FormsPackage.FormSetup" />
-        <activity android:name=".MainFragments.MainActivity">
+        android:theme="@style/Theme.ServiceReminder"
+        tools:ignore="AllowBackup">
+        <activity android:name=".formsPackage.EditForm"></activity>
+        <activity android:name=".formsPackage.FormSetup" />
+        <activity android:name=".mainFragments.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +29,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".NotificationSetup.ServiceNotification" />
+        <receiver android:name=".notificationSetup.ServiceNotification" />
     </application>
 
 </manifest>

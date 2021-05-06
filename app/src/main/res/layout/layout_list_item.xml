@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Theme.ServiceReminder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/standardMargin"
+    android:layout_margin="@dimen/halfStandardMargin"
     android:background="@android:color/transparent"
     tools:ignore="HardcodedText">
 
@@ -37,7 +36,7 @@
             android:id="@+id/vehicle_img"
             android:layout_width="@dimen/standardTextSize"
             android:layout_height="@dimen/standardTextSize"
-            android:layout_marginStart="@dimen/standardTextSize"
+            android:layout_marginStart="@dimen/standardMargin"
             android:layout_marginTop="@dimen/halfStandardMargin"
             android:layout_toEndOf="@id/vehicle_brand"
             android:contentDescription="Vehicle_Type" />
@@ -47,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/vehicle_img"
-            android:layout_marginStart="@dimen/standardTextSize"
+            android:layout_marginStart="@dimen/standardMargin"
             android:layout_marginTop="@dimen/halfStandardMargin"
             android:layout_toEndOf="@id/vehicle_brand"
             android:text="ZZZ 9999"
@@ -69,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/sDate"
             android:layout_toStartOf="@+id/favorites_button"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/halfStandardMargin"
             android:layout_marginEnd="@dimen/standardMargin"
             android:text="1-1-2002"
             android:textSize="@dimen/midHalfStandardTextSize" />

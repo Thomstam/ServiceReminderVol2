@@ -19,7 +19,7 @@
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
             <ImageButton
-                android:id="@+id/completeForm"
+                android:id="@+id/completeFormEditForm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -31,15 +31,15 @@
                 android:src="@drawable/ic_complete_icon" />
 
             <ImageButton
-                android:id="@+id/backButton"
+                android:id="@+id/deleteButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/standardMargin"
                 android:layout_marginTop="@dimen/halfStandardMargin"
                 android:layout_marginBottom="@dimen/halfStandardMargin"
                 android:background="@color/design_default_color_primary"
-                android:contentDescription="Back Button"
-                android:src="@drawable/ic_back_icon" />
+                android:contentDescription="Delete Button"
+                android:src="@drawable/ic_delete_icon" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -55,7 +55,7 @@
         tools:ignore="HardcodedText">
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/formScrollView"
+            android:id="@+id/formScrollViewEditForm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
@@ -82,7 +82,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/platesOfVehicle"
+                        android:id="@+id/platesOfVehicleEditForm"
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:layout_gravity="bottom"
@@ -91,10 +91,11 @@
                         android:hint="Plates of Vehicle*"
                         android:imeOptions="actionNext"
                         android:inputType="textCapCharacters"
-                        android:maxLength="8" />
+                        android:maxLength="8"
+                        android:textAllCaps="true" />
 
                     <Spinner
-                        android:id="@+id/brandIcons"
+                        android:id="@+id/brandIconsEditForm"
                         android:layout_width="128dp"
                         android:layout_height="128dp"
                         android:layout_marginStart="@dimen/doubleStandardMargin"
@@ -112,28 +113,28 @@
                     android:textSize="@dimen/OneAndHalfStandardTextSize" />
 
                 <RadioGroup
-                    android:id="@+id/vehicleSelection"
+                    android:id="@+id/vehicleSelectionEditForm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/standardMargin"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/carVehicle"
+                        android:id="@+id/carVehicleEditForm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
                         android:drawableEnd="@drawable/ic_car_vehicle" />
 
                     <RadioButton
-                        android:id="@+id/truckVehicle"
+                        android:id="@+id/truckVehicleEditForm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/doubleStandardMargin"
                         android:drawableEnd="@drawable/ic_truck_vehicle" />
 
                     <RadioButton
-                        android:id="@+id/bikeVehicle"
+                        android:id="@+id/bikeVehicleEditForm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/doubleStandardMargin"
@@ -149,7 +150,7 @@
                     android:textSize="@dimen/OneAndHalfStandardTextSize" />
 
                 <EditText
-                    android:id="@+id/currentKms"
+                    android:id="@+id/currentKmsEditForm"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="@dimen/standardMargin"
@@ -166,7 +167,7 @@
                     android:textSize="@dimen/OneAndHalfStandardTextSize" />
 
                 <EditText
-                    android:id="@+id/nextServiceKms"
+                    android:id="@+id/nextServiceKmsEditForm"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="@dimen/standardMargin"
@@ -183,7 +184,7 @@
                     android:textSize="@dimen/OneAndHalfStandardTextSize" />
 
                 <EditText
-                    android:id="@+id/kmsPerDay"
+                    android:id="@+id/kmsPerDayEditForm"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="@dimen/standardMargin"
@@ -200,7 +201,7 @@
                     android:textSize="@dimen/OneAndHalfStandardTextSize" />
 
                 <EditText
-                    android:id="@+id/daysOfUse"
+                    android:id="@+id/daysOfUseEditForm"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="@dimen/standardMargin"
@@ -217,7 +218,7 @@
                     android:textSize="@dimen/OneAndHalfStandardTextSize" />
 
                 <Spinner
-                    android:id="@+id/notificationTime"
+                    android:id="@+id/notificationTimeEditForm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/standardMargin"
@@ -231,7 +232,7 @@
                     android:textSize="@dimen/OneAndHalfStandardTextSize" />
 
                 <TimePicker
-                    android:id="@+id/timeForTheNotification"
+                    android:id="@+id/timeForTheNotificationEditForm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/standardMargin"

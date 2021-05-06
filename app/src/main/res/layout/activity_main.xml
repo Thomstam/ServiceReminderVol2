@@ -13,7 +13,7 @@
         style="@style/Theme.ServiceReminder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainFragments.MainActivity"
+        tools:context=".mainFragments.MainActivity"
         tools:ignore="HardcodedText">
 
         <androidx.fragment.app.FragmentContainerView

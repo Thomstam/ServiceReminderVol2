@@ -7,7 +7,6 @@
 
     <dimen name="standardTextSize" type="integer">24sp</dimen>
     <dimen name="OneAndHalfStandardTextSize" type="integer">30sp</dimen>
-    <dimen name="halfStandardTextSize" type="integer">12sp</dimen>
     <dimen name="midHalfStandardTextSize" type="integer">18sp</dimen>
 
 </resources>
