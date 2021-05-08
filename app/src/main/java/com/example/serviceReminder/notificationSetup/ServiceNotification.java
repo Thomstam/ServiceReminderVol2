@@ -75,7 +75,6 @@ public class ServiceNotification extends BroadcastReceiver {
     private void setNotificationLayout(RemoteViews remoteViews, Vehicle vehicle) {
         remoteViews.setTextViewText(R.id.platesOfVehicleNotification, vehicle.getPlatesOfVehicle());
         remoteViews.setImageViewResource(R.id.brandNotificationIcon, vehicle.getBrandIcon());
-        remoteViews.setTextViewText(R.id.notificationSpinnerSelection, vehicle.getNotificationSpinnerTimeSelection());
     }
 
 

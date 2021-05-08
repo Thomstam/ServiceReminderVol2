@@ -157,7 +157,8 @@
                     android:hint="Vehicle Kms*"
                     android:imeOptions="actionNext"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="8"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -174,7 +175,8 @@
                     android:hint="Next service kms*"
                     android:imeOptions="actionNext"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="8"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -191,7 +193,8 @@
                     android:hint="Average kms Per Day*"
                     android:imeOptions="actionNext"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="5"/>
 
                 <TextView
                     android:layout_width="wrap_content"

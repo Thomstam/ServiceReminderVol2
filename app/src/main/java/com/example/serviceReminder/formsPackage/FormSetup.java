@@ -69,7 +69,7 @@ public class FormSetup extends AppCompatActivity {
     }
 
     private boolean alreadyExists() {
-        if (vehicles != null){
+        if (vehicles != null) {
             for (Vehicle vehicle : vehicles) {
                 if (vehicle.getPlatesOfVehicle().equals(platesOfVehicle.getText().toString())) {
                     return true;
@@ -219,10 +219,11 @@ public class FormSetup extends AppCompatActivity {
                     Integer.parseInt(averageKmsPerDay.getText().toString()),
                     Integer.parseInt(daysOfUse.getText().toString()),
                     notificationTimeForTheService,
-                    notificationTime.getSelectedItem().toString(),
+                    notificationTime.getSelectedItemPosition(),
                     sdf.format(dayCalculatorForServiceInMills() + System.currentTimeMillis()),
                     false,
-                    System.currentTimeMillis());
+                    System.currentTimeMillis(),
+                    saveHourAndMinutesOfTheNotification());
             completeActivity(vehicle);
         });
     }
@@ -234,6 +235,10 @@ public class FormSetup extends AppCompatActivity {
         finish();
     }
 
-
+    private String saveHourAndMinutesOfTheNotification() {
+        String hour = String.valueOf(timeForTheNotification.getHour());
+        String minute = String.valueOf(timeForTheNotification.getMinute());
+        return hour + ":" + minute;
+    }
 
 }

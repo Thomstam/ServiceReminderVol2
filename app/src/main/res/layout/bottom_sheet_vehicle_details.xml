@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/secondaryBasic"
+    android:orientation="horizontal"
+    android:weightSum="2"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bottomSheetPlates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/halfStandardMargin"
+            android:text="Plates:"
+            android:textSize="@dimen/standardTextSize" />
+
+        <TextView
+            android:id="@+id/bottomSheetPlatesNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/halfStandardMargin"
+            android:text="SSS-5566"
+            android:textColor="@color/teal_200"
+            android:textSize="@dimen/midHalfStandardTextSize" />
+
+        <TextView
+            android:id="@+id/bottomSheetAverageKmsPerDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:text="Kms Per Day:"
+            android:textSize="@dimen/standardTextSize" />
+
+        <TextView
+            android:id="@+id/bottomSheetAverageKmsPerDayNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/halfStandardMargin"
+            android:text="54555"
+            android:textColor="@color/teal_200"
+            android:textSize="@dimen/midHalfStandardTextSize" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:text="Weekly Usage"
+            android:textSize="@dimen/standardTextSize" />
+
+        <TextView
+            android:id="@+id/bottomSheetWeeklyUsageNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/halfStandardMargin"
+            android:layout_marginBottom="@dimen/halfStandardMargin"
+            android:text="2"
+            android:textColor="@color/teal_200"
+            android:textSize="@dimen/midHalfStandardTextSize" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bottomSheetCurrentKms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/halfStandardMargin"
+            android:text="Current Kms:"
+            android:textSize="@dimen/standardTextSize" />
+
+        <TextView
+            android:id="@+id/bottomSheetCurrentKmsNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/halfStandardMargin"
+            android:text="99999999"
+            android:textColor="@color/teal_200"
+            android:textSize="@dimen/midHalfStandardTextSize" />
+
+        <TextView
+            android:id="@+id/bottomSheetServiceKms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:text="Service Kms:"
+            android:textSize="@dimen/standardTextSize" />
+
+        <TextView
+            android:id="@+id/bottomSheetServiceKmsNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/halfStandardMargin"
+            android:text="99999999"
+            android:textColor="@color/teal_200"
+            android:textSize="@dimen/midHalfStandardTextSize" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:text="Notification Time"
+            android:textSize="@dimen/standardTextSize" />
+
+        <TextView
+            android:id="@+id/bottomSheetNotificationDayNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/halfStandardMargin"
+            android:layout_marginBottom="@dimen/halfStandardMargin"
+            android:text="18:50"
+            android:textColor="@color/teal_200"
+            android:textSize="@dimen/midHalfStandardTextSize" />
+    </LinearLayout>
+</LinearLayout>

@@ -8,9 +8,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -18,13 +15,11 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.example.serviceReminder.drawerMainContents.DrawerHeaderFragment;
-import com.example.serviceReminder.formsPackage.EditForm;
 import com.example.serviceReminder.formsPackage.FormSetup;
 import com.example.serviceReminder.notificationSetup.ServiceNotification;
 import com.example.serviceReminder.drawerMainContents.SettingsFragment;
@@ -75,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    private void setVehicleRecyclerViewFromMain(){
+    private void setVehicleRecyclerViewFromMain() {
         vehicleRecyclerViewFromMain = new VehicleRecyclerView();
     }
 
@@ -102,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
                 assert data != null;
                 String query = data.getStringExtra("QueryToExecute");
                 Vehicle vehicle = (Vehicle) data.getExtras().get("vehicle");
-                if (query.equals("delete")){
+                if (query.equals("delete")) {
                     vehicleViewModelFromMain.delete(vehicle);
-                }else {
+                } else {
                     vehicleViewModelFromMain.update(vehicle);
                 }
             }
@@ -188,17 +182,6 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
     }
 
-    public void RecyclersOnClick(Vehicle vehicle, Context context){
-        Intent formEditActivity = new Intent(context, EditForm.class);
-        ArrayList<Vehicle> tempList = (ArrayList<Vehicle>) vehicleRecyclerViewFromMain.getVehicles();
-        if (tempList.size() > 0) {
-            formEditActivity.putParcelableArrayListExtra("vehicles", tempList);
-            formEditActivity.putExtra("vehicleBoolean", true);
-        }
-        formEditActivity.putExtra("isForEdit", true);
-        formEditActivity.putExtra("vehicleForEdit", vehicle);
-        startActivityForResult(formEditActivity, REQUEST_EDIT_FORM);
-    }
 
     private void newFormSetup() {
         FloatingActionButton floatingActionButton = findViewById(R.id.newFormButton);
@@ -214,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public static List<Vehicle> vehicleList(){
-        return  vehicleRecyclerViewFromMain.getVehicles();
+    public static List<Vehicle> vehicleList() {
+        return vehicleRecyclerViewFromMain.getVehicles();
     }
 }

@@ -53,7 +53,9 @@ public class VehicleRepository {
         updateVehicle(vehicle);
     }
 
-    public void updateAllVehicles(List<Vehicle> vehicles){ updateVehicleKms(vehicles);}
+    public void updateAllVehicles(List<Vehicle> vehicles) {
+        updateVehicleKms(vehicles);
+    }
 
     private void insertNewVehicle(Vehicle vehicle) {
         new Thread(() -> vehicleDao.insertVehicle(vehicle)).start();
@@ -67,24 +69,24 @@ public class VehicleRepository {
         new Thread(() -> vehicleDao.update(vehicle)).start();
     }
 
-    private void updateVehicleKms(List<Vehicle> vehicles){
+    private void updateVehicleKms(List<Vehicle> vehicles) {
         new Thread(() -> {
             for (Vehicle vehicle : vehicles) {
                 try {
                     Date test1 = sdf.parse(sdf.format(vehicle.getLastTimeKmsUpdated()));
-                    Date test2 =  sdf.parse(sdf.format(System.currentTimeMillis()));
+                    Date test2 = sdf.parse(sdf.format(System.currentTimeMillis()));
                     assert test1 != null;
                     assert test2 != null;
-                    if (test1.getTime() != test2.getTime());{
-                       int daysPassed = (int) (test2.getTime() - test1.getTime() / 86400000);
-                       int newKms = daysPassed * (vehicle.getKmsPerDay() * vehicle.getUsagePerWeek()/7);
+                    if (test1.getTime() != test2.getTime()) ;
+                    {
+                        int daysPassed = (int) (test2.getTime() - test1.getTime() / 86400000);
+                        int newKms = daysPassed * (vehicle.getKmsPerDay() * vehicle.getUsagePerWeek() / 7);
                         vehicle.setCurrentKms(newKms);
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
-
         });
     }
 }

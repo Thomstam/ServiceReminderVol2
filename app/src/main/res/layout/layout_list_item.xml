@@ -1,79 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Theme.ServiceReminder"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/halfStandardMargin"
-    android:background="@android:color/transparent"
+    android:layout_height="96dp"
+    android:layout_marginTop="@dimen/doubleStandardMargin"
+    android:background="@color/basic"
     tools:ignore="HardcodedText">
 
+    <ImageButton
+        android:id="@+id/favorites_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/halfStandardMargin"
+        android:layout_marginEnd="@dimen/halfStandardMargin"
+        android:background="@drawable/circle_shape"
+        android:contentDescription="favorites_button"
+        android:src="@drawable/recycler_view_favorites_true" />
 
-    <RelativeLayout
-        android:background="@color/basic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/vehicle_brand"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:contentDescription="Vehicle_Brand" />
 
-        <ImageButton
-            android:id="@+id/favorites_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/recycler_view_favorites_true"
-            android:contentDescription="favorites_button"
-            android:background="@drawable/circle_shape"
-            android:layout_marginTop="@dimen/halfStandardMargin"
-            android:layout_marginEnd="@dimen/standardMargin"/>
+    <ImageView
+        android:id="@+id/platesInformationIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/halfStandardMargin"
+        android:layout_marginTop="@dimen/standardMargin"
+        android:layout_toEndOf="@id/vehicle_brand"
+        android:contentDescription="InfoIcon"
+        android:src="@drawable/recycler_view_plates_information" />
 
-        <ImageView
-            android:id="@+id/vehicle_brand"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_centerVertical="true"
-            android:contentDescription="Vehicle_Brand" />
+    <ImageView
+        android:id="@+id/vehicle_img"
+        android:layout_width="@dimen/standardTextSize"
+        android:layout_height="@dimen/standardTextSize"
+        android:layout_marginStart="@dimen/standardMargin"
+        android:layout_marginTop="@dimen/standardMargin"
+        android:layout_toEndOf="@id/plates_num"
+        android:contentDescription="Vehicle_Type" />
 
-        <ImageView
-            android:id="@+id/vehicle_img"
-            android:layout_width="@dimen/standardTextSize"
-            android:layout_height="@dimen/standardTextSize"
-            android:layout_marginStart="@dimen/standardMargin"
-            android:layout_marginTop="@dimen/halfStandardMargin"
-            android:layout_toEndOf="@id/vehicle_brand"
-            android:contentDescription="Vehicle_Type" />
+    <TextView
+        android:id="@+id/plates_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/halfStandardMargin"
+        android:layout_marginTop="@dimen/standardMargin"
+        android:layout_toEndOf="@id/platesInformationIcon"
+        android:text="ZZZ 9999"
+        android:textSize="@dimen/midHalfStandardTextSize" />
 
-        <TextView
-            android:id="@+id/plates_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/vehicle_img"
-            android:layout_marginStart="@dimen/standardMargin"
-            android:layout_marginTop="@dimen/halfStandardMargin"
-            android:layout_toEndOf="@id/vehicle_brand"
-            android:text="ZZZ 9999"
-            android:textSize="@dimen/midHalfStandardTextSize" />
+    <ImageView
+        android:id="@+id/calendarIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/halfStandardMargin"
+        android:layout_marginBottom="@dimen/standardMargin"
+        android:layout_toEndOf="@id/vehicle_brand"
+        android:contentDescription="calendarIcon"
+        android:src="@drawable/recycler_view_calendar" />
 
-        <TextView
-            android:id="@+id/sDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/halfStandardMargin"
-            android:layout_toStartOf="@+id/favorites_button"
-            android:layout_marginEnd="@dimen/standardMargin"
-            android:text="Service date:"
-            android:textSize="@dimen/midHalfStandardTextSize" />
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/halfStandardMargin"
+        android:layout_marginBottom="@dimen/standardMargin"
+        android:layout_toEndOf="@+id/calendarIcon"
+        android:text="1-1-2002"
+        android:textSize="@dimen/midHalfStandardTextSize" />
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/sDate"
-            android:layout_toStartOf="@+id/favorites_button"
-            android:layout_marginTop="@dimen/halfStandardMargin"
-            android:layout_marginEnd="@dimen/standardMargin"
-            android:text="1-1-2002"
-            android:textSize="@dimen/midHalfStandardTextSize" />
+    <ImageButton
+        android:id="@+id/editIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/halfStandardMargin"
+        android:layout_marginBottom="@dimen/halfStandardMargin"
+        android:background="@drawable/circle_shape"
+        android:contentDescription="editIcon"
+        android:src="@drawable/recycler_view_edit_button" />
 
-    </RelativeLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>
 
 

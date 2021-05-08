@@ -24,13 +24,14 @@ public class Vehicle implements Parcelable {
     private int kmsPerDay;
     private int usagePerWeek;
     private long notificationTime;
-    private String notificationSpinnerTimeSelection;
+    private int notificationSpinnerTimeSelection;
     private String dateOfTheService;
     private boolean isFavorite;
     private long lastTimeKmsUpdated;
+    private String hourAndMinOfTheNotification;
 
 
-    public Vehicle(@NonNull String platesOfVehicle, int brandIcon, String typeOfVehicle, int currentKms, int serviceKms, int kmsPerDay, int usagePerWeek, long notificationTime, String notificationSpinnerTimeSelection, String dateOfTheService, boolean isFavorite, long lastTimeKmsUpdated) {
+    public Vehicle(@NonNull String platesOfVehicle, int brandIcon, String typeOfVehicle, int currentKms, int serviceKms, int kmsPerDay, int usagePerWeek, long notificationTime, int notificationSpinnerTimeSelection, String dateOfTheService, boolean isFavorite, long lastTimeKmsUpdated, String hourAndMinOfTheNotification) {
         this.platesOfVehicle = platesOfVehicle;
         this.brandIcon = brandIcon;
         this.typeOfVehicle = typeOfVehicle;
@@ -43,6 +44,7 @@ public class Vehicle implements Parcelable {
         this.dateOfTheService = dateOfTheService;
         this.isFavorite = isFavorite;
         this.lastTimeKmsUpdated = lastTimeKmsUpdated;
+        this.hourAndMinOfTheNotification = hourAndMinOfTheNotification;
     }
 
     protected Vehicle(Parcel in) {
@@ -55,10 +57,11 @@ public class Vehicle implements Parcelable {
         kmsPerDay = in.readInt();
         usagePerWeek = in.readInt();
         notificationTime = in.readLong();
-        notificationSpinnerTimeSelection = in.readString();
+        notificationSpinnerTimeSelection = in.readInt();
         dateOfTheService = in.readString();
         isFavorite = in.readInt() == 0;
         lastTimeKmsUpdated = in.readLong();
+        hourAndMinOfTheNotification = in.readString();
     }
 
     @Override
@@ -72,10 +75,11 @@ public class Vehicle implements Parcelable {
         dest.writeInt(kmsPerDay);
         dest.writeInt(usagePerWeek);
         dest.writeLong(notificationTime);
-        dest.writeString(notificationSpinnerTimeSelection);
+        dest.writeInt(notificationSpinnerTimeSelection);
         dest.writeString(dateOfTheService);
         dest.writeInt(isFavorite ? 0 : 1);
         dest.writeLong(lastTimeKmsUpdated);
+        dest.writeString(hourAndMinOfTheNotification);
     }
 
     public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
@@ -152,11 +156,11 @@ public class Vehicle implements Parcelable {
         this.notificationTime = notificationTime;
     }
 
-    public String getNotificationSpinnerTimeSelection() {
+    public int getNotificationSpinnerTimeSelection() {
         return notificationSpinnerTimeSelection;
     }
 
-    public void setNotificationSpinnerTimeSelection(String notificationSpinnerTimeSelection) {
+    public void setNotificationSpinnerTimeSelection(int notificationSpinnerTimeSelection) {
         this.notificationSpinnerTimeSelection = notificationSpinnerTimeSelection;
     }
 
@@ -198,5 +202,13 @@ public class Vehicle implements Parcelable {
 
     public void setLastTimeKmsUpdated(long lastTimeKmsUpdated) {
         this.lastTimeKmsUpdated = lastTimeKmsUpdated;
+    }
+
+    public String getHourAndMinOfTheNotification() {
+        return hourAndMinOfTheNotification;
+    }
+
+    public void setHourAndMinOfTheNotification(String hourAndMinOfTheNotification) {
+        this.hourAndMinOfTheNotification = hourAndMinOfTheNotification;
     }
 }

@@ -20,6 +20,7 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
     List<Vehicle> vehicles = new ArrayList<>();
     private onItemClickListener listener;
     private onFavoriteClickListener favoriteListener;
+    private onEditClickListener forEditListener;
 
     public VehicleRecyclerView() {
     }
@@ -74,6 +75,7 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
         final TextView platesNum;
         final TextView date;
         final ImageButton isFavorite;
+        final ImageButton forEdit;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,8 +84,10 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
             platesNum = itemView.findViewById(R.id.plates_num);
             date = itemView.findViewById(R.id.date);
             isFavorite = itemView.findViewById(R.id.favorites_button);
+            forEdit = itemView.findViewById(R.id.editIcon);
             itemView.setOnClickListener(v -> listener.onItemClick(vehicles.get(getAbsoluteAdapterPosition())));
             isFavorite.setOnClickListener(v -> favoriteListener.onFavoriteClick(vehicles.get(getAbsoluteAdapterPosition())));
+            forEdit.setOnClickListener(v -> forEditListener.onEditClick(vehicles.get(getAbsoluteAdapterPosition())));
         }
     }
 
@@ -95,6 +99,10 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
         void onFavoriteClick(Vehicle vehicle);
     }
 
+    public interface onEditClickListener {
+        void onEditClick(Vehicle vehicle);
+    }
+
     public void setOnItemClickListener(onItemClickListener listener) {
         this.listener = listener;
     }
@@ -102,4 +110,10 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
     public void setOnFavoriteClickListener(onFavoriteClickListener favoriteListener) {
         this.favoriteListener = favoriteListener;
     }
+
+    public void setForEditListener(onEditClickListener editListener) {
+        this.forEditListener = editListener;
+    }
+
+
 }

@@ -37,7 +37,9 @@ public class VehicleViewModel extends AndroidViewModel {
         return upComingServices;
     }
 
-    public void updateVehicle(List<Vehicle> vehicles){vehicleRepository.updateAllVehicles(vehicles);}
+    public void updateVehicle(List<Vehicle> vehicles) {
+        vehicleRepository.updateAllVehicles(vehicles);
+    }
 
     public void insert(Vehicle vehicle) {
         vehicleRepository.insert(vehicle);

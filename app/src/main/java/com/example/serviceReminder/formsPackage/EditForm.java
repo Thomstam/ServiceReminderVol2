@@ -67,6 +67,8 @@ public class EditForm extends AppCompatActivity {
         setCompleteForm();
 
         setDeleteButton();
+
+        setNotificationTime();
     }
 
     private void setVehicleRadioButton() {
@@ -112,16 +114,23 @@ public class EditForm extends AppCompatActivity {
         daysOfUse = findViewById(R.id.daysOfUseEditForm);
         daysOfUse.setText(String.valueOf(vehicleForEdit.getUsagePerWeek()));
         daysOfUse.setFilters(new InputFilter[]{new InputFilterMinMax(1, 7)});
+    }
 
+
+    private void setNotificationTime() {
         timeForTheNotification = findViewById(R.id.timeForTheNotificationEditForm);
         timeForTheNotification.setIs24HourView(true);
-
+        String timeForTheNotificationVehicle = vehicleForEdit.getHourAndMinOfTheNotification();
+        String[] times = timeForTheNotificationVehicle.split(":");
+        timeForTheNotification.setHour(Integer.parseInt(times[0]));
+        timeForTheNotification.setMinute(Integer.parseInt(times[1]));
     }
 
     private void setNotificationSpinner() {
         notificationTime = findViewById(R.id.notificationTimeEditForm);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.notificationDates, R.layout.spinner_items_custom);
         notificationTime.setAdapter(adapter);
+        notificationTime.setSelection(vehicleForEdit.getNotificationSpinnerTimeSelection());
     }
 
     private void setBrandIconSelection() {
@@ -207,7 +216,7 @@ public class EditForm extends AppCompatActivity {
             vehicleForEdit.setTypeOfVehicle(vehicleType);
             vehicleForEdit.setNotificationTime(notificationTimeForTheService);
 
-            String notificationSpinnerSelection = notificationTime.getSelectedItem().toString();
+            int notificationSpinnerSelection = notificationTime.getSelectedItemPosition();
             vehicleForEdit.setNotificationSpinnerTimeSelection(notificationSpinnerSelection);
             finishEditForm("update");
         });
@@ -257,7 +266,7 @@ public class EditForm extends AppCompatActivity {
         finish();
     }
 
-    private void setDeleteButton(){
+    private void setDeleteButton() {
         ImageButton delete = findViewById(R.id.deleteButton);
         delete.setOnClickListener(v -> finishEditForm("delete"));
     }

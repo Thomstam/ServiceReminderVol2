@@ -1,5 +1,6 @@
 package com.example.serviceReminder.mainFragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,16 +16,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.serviceReminder.R;
 import com.example.serviceReminder.database.VehicleViewModel;
+import com.example.serviceReminder.formsPackage.EditForm;
+import com.example.serviceReminder.utilities.Vehicle;
 import com.example.serviceReminder.utilities.VehicleRecyclerView;
+
+import java.util.ArrayList;
 
 public class UpcomingServicesScreenFragment extends Fragment {
 
-    public UpcomingServicesScreenFragment(){
-        super (R.layout.main_activity_upcoming_services_fragment);
+    public UpcomingServicesScreenFragment() {
+        super(R.layout.main_activity_upcoming_services_fragment);
     }
 
     private VehicleRecyclerView recyclerCustom;
     private VehicleViewModel vehicleViewModelUpComingServices;
+    private final static int REQUEST_EDIT_FORM = 102;
 
     @Nullable
     @Override
@@ -44,6 +50,8 @@ public class UpcomingServicesScreenFragment extends Fragment {
         setFavoriteOnClick();
 
         setRecyclerOnClick();
+
+        setEditClickListener();
     }
 
     private void setRecyclerCustom() {
@@ -62,7 +70,7 @@ public class UpcomingServicesScreenFragment extends Fragment {
 
     private void setRecyclerOnClick() {
         recyclerCustom.setOnItemClickListener(vehicle -> {
-            new MainActivity().RecyclersOnClick(vehicle, getContext());
+
         });
     }
 
@@ -71,6 +79,19 @@ public class UpcomingServicesScreenFragment extends Fragment {
             vehicle.setFavorite(!vehicle.isFavorite());
             vehicleViewModelUpComingServices.update(vehicle);
             recyclerCustom.notifyData();
+        });
+    }
+
+    private void setEditClickListener() {
+        recyclerCustom.setForEditListener(vehicle -> {
+            Intent formEditActivity = new Intent(getActivity(), EditForm.class);
+            ArrayList<Vehicle> tempList = (ArrayList<Vehicle>) MainActivity.vehicleList();
+            if (tempList.size() > 0) {
+                formEditActivity.putParcelableArrayListExtra("vehicles", tempList);
+                formEditActivity.putExtra("vehicleBoolean", true);
+            }
+            formEditActivity.putExtra("vehicleForEdit", vehicle);
+            requireActivity().startActivityForResult(formEditActivity, REQUEST_EDIT_FORM);
         });
     }
 }

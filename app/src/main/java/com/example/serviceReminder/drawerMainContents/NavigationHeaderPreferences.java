@@ -21,7 +21,6 @@ import java.io.File;
 public class NavigationHeaderPreferences extends Preference {
 
 
-
     View.OnClickListener imageClickListener;
     View.OnClickListener companyNameClickListener;
     private TextView companyName;

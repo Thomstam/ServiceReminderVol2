@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,11 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.serviceReminder.R;
 import com.example.serviceReminder.database.VehicleViewModel;
 import com.example.serviceReminder.formsPackage.EditForm;
+import com.example.serviceReminder.utilities.BottomSheetFragment;
 import com.example.serviceReminder.utilities.Vehicle;
 import com.example.serviceReminder.utilities.VehicleRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HomeScreenFragments extends Fragment {
 
@@ -54,6 +58,7 @@ public class HomeScreenFragments extends Fragment {
 
         setFavoriteOnClick();
 
+        setEditClickListener();
     }
 
     private void setRecyclerCustom() {
@@ -72,14 +77,11 @@ public class HomeScreenFragments extends Fragment {
 
     private void setRecyclerOnClick() {
         recyclerCustom.setOnItemClickListener(vehicle -> {
-            Intent formEditActivity = new Intent(getActivity(), EditForm.class);
-            ArrayList<Vehicle> tempList = (ArrayList<Vehicle>) MainActivity.vehicleList();
-            if (tempList.size() > 0) {
-                formEditActivity.putParcelableArrayListExtra("vehicles", tempList);
-                formEditActivity.putExtra("vehicleBoolean", true);
-            }
-            formEditActivity.putExtra("vehicleForEdit", vehicle);
-            requireActivity().startActivityForResult(formEditActivity, REQUEST_EDIT_FORM);
+            FragmentTransaction transaction = ((FragmentActivity) requireContext())
+                    .getSupportFragmentManager()
+                    .beginTransaction();
+
+            BottomSheetFragment.newInstance(vehicle).show(transaction, "dialog_playback");
         });
     }
 
@@ -91,7 +93,16 @@ public class HomeScreenFragments extends Fragment {
         });
     }
 
-    public List<Vehicle> getVehicles() {
-        return recyclerCustom.getVehicles();
+    private void setEditClickListener() {
+        recyclerCustom.setForEditListener(vehicle -> {
+            Intent formEditActivity = new Intent(getActivity(), EditForm.class);
+            ArrayList<Vehicle> tempList = (ArrayList<Vehicle>) MainActivity.vehicleList();
+            if (tempList.size() > 0) {
+                formEditActivity.putParcelableArrayListExtra("vehicles", tempList);
+                formEditActivity.putExtra("vehicleBoolean", true);
+            }
+            formEditActivity.putExtra("vehicleForEdit", vehicle);
+            requireActivity().startActivityForResult(formEditActivity, REQUEST_EDIT_FORM);
+        });
     }
 }
