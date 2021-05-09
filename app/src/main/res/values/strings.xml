@@ -1,16 +1,24 @@
 <resources>
 
-    <string name="app_name">ServiceReminder</string>
+    <string name="app_name" translatable="false">ServiceReminder</string>
 
 
-    <string name="soundPreference">sound</string>
+    <string name="soundPreference" translatable="false">sound</string>
 
     <!-- Preference Titles -->
 
     <!-- Messages Preferences -->
 
     <!-- Sync Preferences -->
-    <string name="navigation_drawer_open">open</string>
-    <string name="navigation_drawer_close">close</string>
+    <string name="navigation_drawer_open" translatable="false">open</string>
+    <string name="navigation_drawer_close" translatable="false">close</string>
+    <string name="openingScreen">Opening Screen</string>
+    <string name="deleteAllVehicles">Delete All Vehicles</string>
+    <string name="vibration">Vibration</string>
+    <string name="lights">Lights</string>
+    <string name="color">Color</string>
+    <string name="sound">Sound</string>
+    <string name="chooseNotificationSound">Choose Notification Sound</string>
+    <string name="language">Language</string>
 
 </resources>

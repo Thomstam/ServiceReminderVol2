@@ -14,9 +14,9 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/halfStandardMargin"
         android:layout_marginEnd="@dimen/halfStandardMargin"
-        android:background="@drawable/circle_shape"
+        android:background="@android:color/transparent"
         android:contentDescription="favorites_button"
-        android:src="@drawable/recycler_view_favorites_true" />
+        android:src="@drawable/recycler_view_favorite_true" />
 
     <ImageView
         android:id="@+id/vehicle_brand"
@@ -50,7 +50,9 @@
         android:layout_marginStart="@dimen/halfStandardMargin"
         android:layout_marginTop="@dimen/standardMargin"
         android:layout_toEndOf="@id/platesInformationIcon"
+        android:shadowColor="@color/bone"
         android:text="ZZZ 9999"
+        android:textColor="@color/bone"
         android:textSize="@dimen/midHalfStandardTextSize" />
 
     <ImageView
@@ -73,6 +75,7 @@
         android:layout_marginBottom="@dimen/standardMargin"
         android:layout_toEndOf="@+id/calendarIcon"
         android:text="1-1-2002"
+        android:textColor="@color/bone"
         android:textSize="@dimen/midHalfStandardTextSize" />
 
     <ImageButton
@@ -83,7 +86,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="@dimen/halfStandardMargin"
         android:layout_marginBottom="@dimen/halfStandardMargin"
-        android:background="@drawable/circle_shape"
+        android:background="@android:color/transparent"
         android:contentDescription="editIcon"
         android:src="@drawable/recycler_view_edit_button" />
 

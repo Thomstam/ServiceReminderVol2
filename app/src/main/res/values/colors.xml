@@ -2,8 +2,12 @@
 <resources>
     <color name="teal_200">#FF03DAC5</color>
     <color name="black">#FF000000</color>
-    <color name="basic">#C43C75</color>
+    <color name="red">#ED0F0F</color>
+    <color name="basic">#303439</color>
     <color name="white">#FFFFFF</color>
     <color name="secondaryBasic">#3B528B</color>
-    <color name="DrawerHeader">#43351A</color>
+    <color name="DrawerHeader">#4A525A</color>
+    <color name="settingsColor">#503D3F</color>
+    <color name="paleGrey">#B8BCB8</color>
+    <color name="bone">#D7CEB2</color>
 </resources>

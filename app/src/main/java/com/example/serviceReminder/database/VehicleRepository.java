@@ -57,6 +57,14 @@ public class VehicleRepository {
         updateVehicleKms(vehicles);
     }
 
+    public void deleteAllVehicles(){
+        nukeTable();
+    }
+
+    private void nukeTable(){
+        new Thread(vehicleDao::nukeTable).start();
+    }
+
     private void insertNewVehicle(Vehicle vehicle) {
         new Thread(() -> vehicleDao.insertVehicle(vehicle)).start();
     }

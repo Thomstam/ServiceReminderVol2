@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,8 +22,7 @@ import java.io.File;
 public class NavigationHeaderPreferences extends Preference {
 
 
-    View.OnClickListener imageClickListener;
-    View.OnClickListener companyNameClickListener;
+    View.OnClickListener editClickListener;
     private TextView companyName;
     private ImageView profilePicture;
 
@@ -35,18 +35,15 @@ public class NavigationHeaderPreferences extends Preference {
         super.onBindViewHolder(holder);
         profilePicture = (ImageView) holder.findViewById(R.id.ProfilePicture);
         companyName = (TextView) holder.findViewById(R.id.companyNameSetText);
-        profilePicture.setOnClickListener(imageClickListener);
-        companyName.setOnClickListener(companyNameClickListener);
+        ImageButton editProfile = (ImageButton) holder.findViewById(R.id.navigationHeaderEditButton);
+        editProfile.setOnClickListener(editClickListener);
         setCompanyName();
         loadProfilePicture();
     }
 
-    public void setProfilePictureClickListener(View.OnClickListener onClickListener) {
-        imageClickListener = onClickListener;
-    }
 
-    public void setCompanyNameClickListener(View.OnClickListener onClickListener) {
-        companyNameClickListener = onClickListener;
+    public void setEditClickListener(View.OnClickListener onClickListener){
+        editClickListener = onClickListener;
     }
 
     public void setCompanyName() {
@@ -54,19 +51,14 @@ public class NavigationHeaderPreferences extends Preference {
         companyName.setText(preferences.getString("companyName", ""));
     }
 
-    public void setCompanyImage(Bitmap image) {
-        profilePicture.setImageBitmap(image);
-    }
 
     public void loadProfilePicture() {
         File root = Environment.getExternalStorageDirectory();
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String pathFile = root + "/saved_images/" + preferences.getString("profilePhotoUrl", "");
+        String pathFile = root + "/saved_images/" + "profilePhoto";
         Bitmap bMap = BitmapFactory.decodeFile(pathFile);
         if (bMap != null) {
-            DrawerHeaderFragment headerFragment = new DrawerHeaderFragment();
-            bMap = headerFragment.getCroppedBitmap(bMap);
-            this.setCompanyImage(bMap);
+            bMap = EditProfilePreferences.getCroppedBitmap(bMap);
+            profilePicture.setImageBitmap(bMap);
         }
     }
 }

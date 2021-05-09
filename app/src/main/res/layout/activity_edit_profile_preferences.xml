@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".drawerMainContents.EditProfilePreferences"
+    tools:ignore="HardcodedText"
+    android:background="@color/paleGrey">
+
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/basic">
+
+        <ImageButton
+            android:id="@+id/completeFormProfileSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/halfStandardMargin"
+            android:layout_marginEnd="@dimen/standardMargin"
+            android:layout_marginBottom="@dimen/halfStandardMargin"
+            android:background="@android:color/transparent"
+            android:contentDescription="CompleteButton"
+            android:src="@drawable/ic_complete_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ServiceReminder"
+            android:textSize="@dimen/midHalfStandardTextSize"/>
+    </Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click To Change Profile Picture"
+            android:textSize="@dimen/midHalfStandardTextSize" />
+
+        <ImageView
+            android:id="@+id/ProfilePictureEditForm"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:contentDescription="ProfilePicture"
+            android:src="@drawable/navigation_header_main_account_picture" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:text="Your Company Name"
+            android:textSize="@dimen/midHalfStandardTextSize" />
+
+        <EditText
+            android:id="@+id/companyNameEditForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/doubleStandardMargin"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:layout_marginEnd="@dimen/doubleStandardMargin"
+            android:hint="Company Name"
+            android:maxLength="15"
+            tools:ignore="Autofill"
+            android:inputType="text" />
+    </LinearLayout>
+
+</RelativeLayout>

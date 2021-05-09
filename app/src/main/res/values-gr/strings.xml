@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="openingScreen">Ανοιγμα Οθονης</string>
+    <string name="deleteAllVehicles">Διαγραφη ολων των Οχηματων</string>
+    <string name="vibration">Δονηση</string>
+    <string name="lights">Φωτα</string>
+    <string name="color">Χρωμα</string>
+    <string name="sound">Ηχος</string>
+    <string name="chooseNotificationSound">Επιλογη ηχου ειδοποιησης</string>
+    <string name="language">Γλωσσα</string>
+</resources>

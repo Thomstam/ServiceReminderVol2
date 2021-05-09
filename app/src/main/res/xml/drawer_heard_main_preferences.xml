@@ -3,19 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <com.example.serviceReminder.drawerMainContents.NavigationHeaderPreferences
-        android:key="profile_picture"
-        app:layout="@layout/navigation_header_main"
-        android:summary=""/>
+    <PreferenceCategory>
 
-    <EditTextPreference
-        android:key="companyName"
-        app:iconSpaceReserved="false"
-        app:isPreferenceVisible="false"/>
+        <com.example.serviceReminder.drawerMainContents.NavigationHeaderPreferences
+            android:key="profile_picture"
+            app:layout="@layout/navigation_header_main"
+            android:summary=""/>
 
-    <EditTextPreference
-        android:key="profilePhotoUrl"
-        app:iconSpaceReserved="false"
-        app:isPreferenceVisible="false"/>
+        <EditTextPreference
+            android:key="companyName"
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="false"/>
+
+        <CheckBoxPreference
+            android:key="splashScreen"
+            app:isPreferenceVisible="false"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+
+
 
 </PreferenceScreen>

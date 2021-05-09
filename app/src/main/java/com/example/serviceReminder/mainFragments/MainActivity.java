@@ -4,26 +4,38 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.media.AudioAttributes;
+import android.media.audiofx.BassBoost;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 
 import com.example.serviceReminder.drawerMainContents.DrawerHeaderFragment;
+import com.example.serviceReminder.drawerMainContents.EditProfilePreferences;
 import com.example.serviceReminder.formsPackage.FormSetup;
 import com.example.serviceReminder.notificationSetup.ServiceNotification;
 import com.example.serviceReminder.drawerMainContents.SettingsFragment;
 import com.example.serviceReminder.R;
+import com.example.serviceReminder.utilities.SplashScreen;
 import com.example.serviceReminder.utilities.Vehicle;
 import com.example.serviceReminder.database.VehicleViewModel;
 import com.example.serviceReminder.utilities.VehicleRecyclerView;
@@ -35,7 +47,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    VehicleViewModel vehicleViewModelFromMain;
+    private static VehicleViewModel vehicleViewModelFromMain;
     public static VehicleRecyclerView vehicleRecyclerViewFromMain;
     private final static int REQUEST_FORM_SETUP = 101;
     private final static int REQUEST_EDIT_FORM = 102;
@@ -44,17 +56,26 @@ public class MainActivity extends AppCompatActivity {
     private final HomeScreenFragments homeScreenFragments = new HomeScreenFragments();
     private final FavoritesScreenFragment favoritesScreenFragment = new FavoritesScreenFragment();
     private final UpcomingServicesScreenFragment upcomingServicesScreenFragment = new UpcomingServicesScreenFragment();
+    private static final String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.WRITE_SETTINGS};
+    public static final int REQUEST_SETTINGS = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        setProfilePreferences();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        settingsInit();
 
         setVehicleRecyclerViewFromMain();
 
         setVehicleViewModel();
 
-        notificationChannel();
+        notificationChannel(this);
 
         newFormSetup();
 
@@ -62,13 +83,20 @@ public class MainActivity extends AppCompatActivity {
 
         setBottomNavigationViewMain();
 
-        settingsInit();
-
         headerInit();
 
-        openFragment(homeScreenFragments);
     }
 
+    private void setProfilePreferences(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!preferences.getBoolean("splashScreen", false)){
+            Intent profileSettings = new Intent(this, EditProfilePreferences.class);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("splashScreen",true);
+            editor.apply();
+            startActivityForResult(profileSettings, 103);
+        }
+    }
 
     private void setVehicleRecyclerViewFromMain() {
         vehicleRecyclerViewFromMain = new VehicleRecyclerView();
@@ -103,23 +131,59 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        if (requestCode == 103) {
+            if (resultCode == Activity.RESULT_OK) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.drawer_header_profile_settings, new DrawerHeaderFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        }
+
     }
 
-    private void notificationChannel() {
+    public void notificationChannel(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            int sound = soundID(context);
             String description = "Channel For Service Reminder";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel(ID_FOR_NOTIFICATION_CHANNEL, NAME_FOR_NOTIFICATION_CHANNEL, importance);
             channel.setDescription(description);
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setContentType(AudioAttributes. CONTENT_TYPE_SONIFICATION )
+                    .setUsage(AudioAttributes. USAGE_ALARM )
+                    .build() ;
+            channel.setSound(Uri.parse("android.resource://" + context.getPackageName() + "/" +sound), audioAttributes);
 
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private int soundID(Context context){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (preferences.getString("SoundPreference", "").equals("Got It Done")){
+            return R.raw.got_it_done;
+        }else {
+            return R.raw.hasty_ba_dum_tss;
         }
     }
 
     @SuppressLint("NonConstantResourceId")
     private void setBottomNavigationViewMain() {
         BottomNavigationView bottomNavigationViewMain = findViewById(R.id.bottomNavigationMain);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (preferences.getString("startFragment", "Home Screen").equals("Home Screen")){
+            bottomNavigationViewMain.setSelectedItemId(R.id.mainPanel);
+            openFragment(homeScreenFragments);
+        }else if (preferences.getString("startFragment", "Home Screen").equals("Favorite Screen")){
+            bottomNavigationViewMain.setSelectedItemId(R.id.favoritesPanel);
+            openFragment(favoritesScreenFragment);
+        }else {
+            bottomNavigationViewMain.setSelectedItemId(R.id.upcomingServices);
+            openFragment(upcomingServicesScreenFragment);
+        }
         bottomNavigationViewMain.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.mainPanel:
@@ -159,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setNotificationTime(Vehicle vehicle) {
+
         Intent intent = new Intent(MainActivity.this, ServiceNotification.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable("Vehicle", vehicle);

@@ -1,6 +1,34 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <PreferenceCategory app:title="Application Settings">
+
+        <ListPreference
+            android:key="startFragment"
+            app:title="@string/openingScreen"
+            android:entries="@array/openingFragments"
+            android:entryValues="@array/openingFragments"
+            android:icon="@drawable/settings_fragment_opening_screen"
+            android:defaultValue="Home Screen"
+            />
+
+        <ListPreference
+            android:key="language"
+            app:title="@string/language"
+            android:entries="@array/languageSelection"
+            android:entryValues="@array/languageSelectionValues"
+            android:icon="@drawable/settings_fragment_language"/>
+
+        <Preference
+            android:key="deleteDB"
+            app:title="@string/deleteAllVehicles"
+            android:icon="@drawable/settings_fragment_delete"/>
+
+
+
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="Notification Settings">
 
         <SwitchPreference
@@ -8,14 +36,14 @@
             app:defaultValue="true"
             app:key="vibration"
             app:summary="Notification With Vibration"
-            app:title="Vibration" />
+            app:title="@string/vibration" />
 
         <SwitchPreference
             android:defaultValue="true"
             android:icon="@drawable/settings_notification_light"
             app:key="notificationLights"
             app:summary="Displaying Light For the Notification"
-            app:title="Lights" />
+            app:title="@string/lights" />
 
         <ListPreference
             android:defaultValue="Red"
@@ -25,7 +53,7 @@
             app:entries="@array/notificationLightsEntries"
             app:entryValues="@array/notificationLightsValues"
             app:key="notificationLightsList"
-            app:title="Color" />
+            app:title="@string/color" />
 
 
         <SwitchPreference
@@ -33,21 +61,19 @@
             app:defaultValue="true"
             app:key="@string/soundPreference"
             app:summary="Notification With Sound Of Your Choice"
-            app:title="Sound" />
+            app:title="@string/sound" />
 
         <Preference
             android:dependency="@string/soundPreference"
             android:icon="@drawable/settings_sound"
             android:key="notificationSounds"
-            android:title="Choose Notification Sound" />
+            android:title="@string/chooseNotificationSound" />
 
         <EditTextPreference
             android:defaultValue="Got It Done"
             android:key="SoundPreference"
             app:iconSpaceReserved="false"
             app:isPreferenceVisible="false" />
-
-
     </PreferenceCategory>
 
 </PreferenceScreen>

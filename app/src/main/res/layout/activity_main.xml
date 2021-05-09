@@ -8,20 +8,21 @@
 
     <include layout="@layout/app_bar_main" />
 
-
     <RelativeLayout
         style="@style/Theme.ServiceReminder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/paleGrey"
         tools:context=".mainFragments.MainActivity"
         tools:ignore="HardcodedText">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainer"
+            android:name="com.example.serviceReminder.mainFragments.HomeScreenFragments"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bottomNavigationMain"
-            android:layout_marginTop="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -35,7 +36,6 @@
             android:contentDescription="New Form Button"
             android:src="@drawable/ic_add_icon"
             app:layout_scrollFlags="scroll|enterAlways" />
-
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationMain"
@@ -54,25 +54,19 @@
         android:layout_gravity="start"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:background="@color/DrawerHeader"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/drawer_header_profile_settings"
+            android:name="com.example.serviceReminder.drawerMainContents.DrawerHeaderFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/drawer_header_profile_settings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                 />
-
-        </LinearLayout>
+            android:background="@color/DrawerHeader"
+            tools:layout="@layout/navigation_header_main" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/settingsFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/design_default_color_primary" />
+            android:background="@color/settingsColor" />
     </LinearLayout>
 
 

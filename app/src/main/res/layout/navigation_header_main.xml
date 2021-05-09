@@ -22,20 +22,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ProfilePicture"
-        android:text="Company Name:"
-        android:textSize="@dimen/midHalfStandardTextSize"
         android:layout_marginStart="@dimen/standardMargin"
         android:layout_marginBottom="@dimen/standardMargin"
+        android:text="Company Name:"
+        android:textSize="@dimen/midHalfStandardTextSize"
         tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/companyNameSetText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/companyNameText"
         android:layout_below="@+id/ProfilePicture"
         android:layout_marginStart="@dimen/standardMargin"
-        android:textSize="@dimen/midHalfStandardTextSize"/>
+        android:layout_toEndOf="@id/companyNameText"
+        android:textSize="@dimen/midHalfStandardTextSize" />
+
+    <ImageButton
+        android:id="@+id/navigationHeaderEditButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/standardMargin"
+        android:layout_marginEnd="@dimen/standardMargin"
+        android:background="@android:color/transparent"
+        android:contentDescription="EditButton"
+        android:src="@drawable/navigation_header_main_edit"
+        tools:ignore="HardcodedText" />
 
 
 </RelativeLayout>

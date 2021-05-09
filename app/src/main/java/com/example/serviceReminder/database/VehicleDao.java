@@ -20,8 +20,11 @@ public interface VehicleDao {
     @Query("SELECT * FROM vehicle WHERE isFavorite = 1 ORDER BY id DESC")
     LiveData<List<Vehicle>> favoritesList();
 
-    @Query("SELECT * FROM vehicle ORDER BY notificationTime DESC")
+    @Query("SELECT * FROM vehicle ORDER BY notificationTime ASC")
     LiveData<List<Vehicle>> upComingServices();
+
+    @Query("DELETE FROM vehicle")
+    void nukeTable();
 
     @Insert
     void insertVehicle(Vehicle vehicle);

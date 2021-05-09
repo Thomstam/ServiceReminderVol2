@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 
@@ -59,6 +61,17 @@ public class ServiceNotification extends BroadcastReceiver {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
+    }
+
+    private Uri setSound(Context context){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        Uri sound;
+        if (preferences.getString("SoundPreference", "Got It Done").equals("Got It Done")){
+            sound = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.got_it_done);
+        }else {
+            sound = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.hasty_ba_dum_tss);
+        }
+        return sound;
     }
 
     private void setPreferences(Context context) {

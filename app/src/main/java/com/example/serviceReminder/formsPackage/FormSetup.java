@@ -7,6 +7,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -81,7 +83,11 @@ public class FormSetup extends AppCompatActivity {
 
     private void setBackButton() {
         ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> finish());
+        Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        backButton.setOnClickListener(v -> {
+            backButton.startAnimation(myAnim);
+            finish();
+        });
     }
 
     private void setBrandIconSelection() {

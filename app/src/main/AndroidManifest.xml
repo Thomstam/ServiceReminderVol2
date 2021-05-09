@@ -8,7 +8,10 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
@@ -19,14 +22,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiceReminder"
         tools:ignore="AllowBackup">
-        <activity android:name=".formsPackage.EditForm"></activity>
-        <activity android:name=".formsPackage.FormSetup" />
-        <activity android:name=".mainFragments.MainActivity">
+        <activity android:name=".drawerMainContents.EditProfilePreferences" />
+        <activity android:name=".utilities.SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".formsPackage.EditForm" />
+        <activity android:name=".formsPackage.FormSetup" />
+        <activity android:name=".mainFragments.MainActivity">
         </activity>
 
         <receiver android:name=".notificationSetup.ServiceNotification" />

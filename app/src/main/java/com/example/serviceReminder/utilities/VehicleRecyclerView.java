@@ -51,14 +51,14 @@ public class VehicleRecyclerView extends RecyclerView.Adapter<VehicleRecyclerVie
         holder.platesNum.setText(vehicles.get(position).getPlatesOfVehicle());
         holder.date.setText(vehicles.get(position).getDateOfTheService());
         if (vehicles.get(position).getTypeOfVehicle().equals("Car")) {
-            holder.vehicleImg.setImageResource(R.drawable.ic_car_vehicle);
+            holder.vehicleImg.setImageResource(R.drawable.recycler_view_car);
         } else if (vehicles.get(position).getTypeOfVehicle().equals("Truck")) {
-            holder.vehicleImg.setImageResource(R.drawable.ic_truck_vehicle);
+            holder.vehicleImg.setImageResource(R.drawable.recycler_view_truck);
         } else {
-            holder.vehicleImg.setImageResource(R.drawable.ic_bike_vehicle);
+            holder.vehicleImg.setImageResource(R.drawable.recycler_view_bike);
         }
         if (vehicles.get(position).isFavorite()) {
-            holder.isFavorite.setImageResource(R.drawable.recycler_view_favorites_true);
+            holder.isFavorite.setImageResource(R.drawable.recycler_view_favorite_true);
         } else {
             holder.isFavorite.setImageResource(R.drawable.recycler_view_favorite_false);
         }

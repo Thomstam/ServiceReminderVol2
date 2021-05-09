@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.serviceReminder.R;
 import com.example.serviceReminder.formsPackage.EditForm;
+import com.example.serviceReminder.utilities.BottomSheetFragment;
 import com.example.serviceReminder.utilities.Vehicle;
 import com.example.serviceReminder.utilities.VehicleRecyclerView;
 import com.example.serviceReminder.database.VehicleViewModel;
@@ -71,10 +74,11 @@ public class FavoritesScreenFragment extends Fragment {
 
     private void setRecyclerOnClick() {
         recyclerCustom.setOnItemClickListener(vehicle -> {
-//            Intent formEditActivity = new Intent(getActivity(), EditForm.class);
-//            formEditActivity.putExtra("isForEdit", true);
-//            formEditActivity.putExtra("vehicleForEdit", vehicle);
-//            startActivityForResult(formEditActivity, REQUEST_EDIT_FORM);
+            FragmentTransaction transaction = ((FragmentActivity) requireContext())
+                    .getSupportFragmentManager()
+                    .beginTransaction();
+
+            BottomSheetFragment.newInstance(vehicle).show(transaction, "dialog_playback");
         });
     }
 

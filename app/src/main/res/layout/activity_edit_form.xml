@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/paleGrey"
     tools:ignore="HardcodedText">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -13,33 +14,54 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/design_default_color_primary"
+            android:background="@color/basic"
             android:focusableInTouchMode="true"
             android:titleTextColor="@color/design_default_color_on_primary"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
-            <ImageButton
-                android:id="@+id/completeFormEditForm"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="@dimen/halfStandardMargin"
-                android:layout_marginEnd="@dimen/standardMargin"
-                android:layout_marginBottom="@dimen/halfStandardMargin"
-                android:background="@color/design_default_color_primary"
-                android:contentDescription="CompleteButton"
-                android:src="@drawable/ic_complete_icon" />
+                android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/standardMargin"
-                android:layout_marginTop="@dimen/halfStandardMargin"
-                android:layout_marginBottom="@dimen/halfStandardMargin"
-                android:background="@color/design_default_color_primary"
-                android:contentDescription="Delete Button"
-                android:src="@drawable/ic_delete_icon" />
+                <ImageButton
+                    android:id="@+id/backButtonEditForm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/standardMargin"
+                    android:layout_marginTop="@dimen/halfStandardMargin"
+                    android:layout_marginBottom="@dimen/halfStandardMargin"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Back Button"
+                    android:src="@drawable/ic_back_icon" />
+
+                <ImageButton
+                    android:id="@+id/completeFormEditForm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/halfStandardMargin"
+                    android:layout_marginEnd="@dimen/standardMargin"
+                    android:layout_marginBottom="@dimen/halfStandardMargin"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="CompleteButton"
+                    android:src="@drawable/ic_complete_icon" />
+
+                <ImageButton
+                    android:id="@+id/deleteButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/halfStandardMargin"
+                    android:layout_marginEnd="@dimen/doubleStandardMargin"
+                    android:layout_marginBottom="@dimen/halfStandardMargin"
+                    android:layout_toStartOf="@+id/completeFormEditForm"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Delete Button"
+                    android:src="@drawable/ic_delete_icon" />
+
+            </RelativeLayout>
+
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -158,7 +180,7 @@
                     android:imeOptions="actionNext"
                     android:importantForAutofill="no"
                     android:inputType="number"
-                    android:maxLength="8"/>
+                    android:maxLength="8" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -176,7 +198,7 @@
                     android:imeOptions="actionNext"
                     android:importantForAutofill="no"
                     android:inputType="number"
-                    android:maxLength="8"/>
+                    android:maxLength="8" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -194,7 +216,7 @@
                     android:imeOptions="actionNext"
                     android:importantForAutofill="no"
                     android:inputType="number"
-                    android:maxLength="5"/>
+                    android:maxLength="5" />
 
                 <TextView
                     android:layout_width="wrap_content"

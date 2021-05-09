@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/paleGrey"
     tools:ignore="HardcodedText">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -13,9 +14,8 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/design_default_color_primary"
+            android:background="@color/basic"
             android:focusableInTouchMode="true"
-            android:titleTextColor="@color/design_default_color_on_primary"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
             <ImageButton
@@ -26,7 +26,7 @@
                 android:layout_marginTop="@dimen/halfStandardMargin"
                 android:layout_marginEnd="@dimen/standardMargin"
                 android:layout_marginBottom="@dimen/halfStandardMargin"
-                android:background="@color/design_default_color_primary"
+                android:background="@android:color/transparent"
                 android:contentDescription="CompleteButton"
                 android:src="@drawable/ic_complete_icon" />
 
@@ -37,7 +37,7 @@
                 android:layout_marginStart="@dimen/standardMargin"
                 android:layout_marginTop="@dimen/halfStandardMargin"
                 android:layout_marginBottom="@dimen/halfStandardMargin"
-                android:background="@color/design_default_color_primary"
+                android:background="@android:color/transparent"
                 android:contentDescription="Back Button"
                 android:src="@drawable/ic_back_icon" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -157,7 +157,7 @@
                     android:imeOptions="actionNext"
                     android:importantForAutofill="no"
                     android:inputType="number"
-                    android:maxLength="8"/>
+                    android:maxLength="8" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -175,7 +175,7 @@
                     android:imeOptions="actionNext"
                     android:importantForAutofill="no"
                     android:inputType="number"
-                    android:maxLength="8"/>
+                    android:maxLength="8" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -193,7 +193,7 @@
                     android:imeOptions="actionNext"
                     android:importantForAutofill="no"
                     android:inputType="number"
-                    android:maxLength="5"/>
+                    android:maxLength="5" />
 
                 <TextView
                     android:layout_width="wrap_content"

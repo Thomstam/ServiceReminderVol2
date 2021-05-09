@@ -19,8 +19,20 @@
         <item>Red</item>
     </string-array>
 
+    <string-array name="openingFragments">
+        <item>Home Screen</item>
+        <item>Favorite Screen</item>
+        <item>Upcoming Services Screen</item>
+    </string-array>
 
-    <!-- Reply Preference -->
+    <string-array name="languageSelection">
+        <item>English</item>
+        <item>Greek</item>
+    </string-array>
 
+    <string-array name="languageSelectionValues">
+        <item>en</item>
+        <item>gr</item>
+    </string-array>
 
 </resources>

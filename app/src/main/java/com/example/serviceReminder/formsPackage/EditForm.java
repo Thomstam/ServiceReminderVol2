@@ -12,6 +12,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -69,6 +71,8 @@ public class EditForm extends AppCompatActivity {
         setDeleteButton();
 
         setNotificationTime();
+
+        setBackButton();
     }
 
     private void setVehicleRadioButton() {
@@ -89,6 +93,15 @@ public class EditForm extends AppCompatActivity {
             } else {
                 vehicleType = "Bike";
             }
+        });
+    }
+
+    private void setBackButton() {
+        ImageButton backButton = findViewById(R.id.backButtonEditForm);
+        Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        backButton.setOnClickListener(v -> {
+            backButton.startAnimation(myAnim);
+            finish();
         });
     }
 
