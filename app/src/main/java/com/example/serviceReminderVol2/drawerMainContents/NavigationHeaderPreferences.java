@@ -1,4 +1,4 @@
-package com.example.serviceReminder.drawerMainContents;
+package com.example.serviceReminderVol2.drawerMainContents;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,7 +15,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceViewHolder;
 
-import com.example.serviceReminder.R;
+import com.example.serviceReminderVol2.R;
 
 import java.io.File;
 

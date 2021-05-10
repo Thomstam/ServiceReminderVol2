@@ -1,4 +1,4 @@
-package com.example.serviceReminder.utilities;
+package com.example.serviceReminderVol2.utilities;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package com.example.serviceReminder.formsPackage;
+package com.example.serviceReminderVol2.formsPackage;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -16,10 +16,10 @@ import android.widget.TimePicker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
-import com.example.serviceReminder.R;
-import com.example.serviceReminder.utilities.CustomAdapter;
-import com.example.serviceReminder.utilities.InputFilterMinMax;
-import com.example.serviceReminder.utilities.Vehicle;
+import com.example.serviceReminderVol2.R;
+import com.example.serviceReminderVol2.utilities.CustomAdapter;
+import com.example.serviceReminderVol2.utilities.InputFilterMinMax;
+import com.example.serviceReminderVol2.utilities.Vehicle;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

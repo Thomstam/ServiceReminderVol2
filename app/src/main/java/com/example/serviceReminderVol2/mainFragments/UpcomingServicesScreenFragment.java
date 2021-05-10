@@ -1,4 +1,4 @@
-package com.example.serviceReminder.mainFragments;
+package com.example.serviceReminderVol2.mainFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.serviceReminder.R;
-import com.example.serviceReminder.database.VehicleViewModel;
-import com.example.serviceReminder.formsPackage.EditForm;
-import com.example.serviceReminder.utilities.BottomSheetFragment;
-import com.example.serviceReminder.utilities.Vehicle;
-import com.example.serviceReminder.utilities.VehicleRecyclerView;
+import com.example.serviceReminderVol2.R;
+import com.example.serviceReminderVol2.database.VehicleViewModel;
+import com.example.serviceReminderVol2.formsPackage.EditForm;
+import com.example.serviceReminderVol2.utilities.BottomSheetFragment;
+import com.example.serviceReminderVol2.utilities.Vehicle;
+import com.example.serviceReminderVol2.utilities.VehicleRecyclerView;
 
 import java.util.ArrayList;
 

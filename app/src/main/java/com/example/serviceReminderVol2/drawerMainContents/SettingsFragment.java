@@ -1,4 +1,4 @@
-package com.example.serviceReminder.drawerMainContents;
+package com.example.serviceReminderVol2.drawerMainContents;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,9 +15,9 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
-import com.example.serviceReminder.R;
-import com.example.serviceReminder.database.VehicleViewModel;
-import com.example.serviceReminder.mainFragments.MainActivity;
+import com.example.serviceReminderVol2.R;
+import com.example.serviceReminderVol2.database.VehicleViewModel;
+import com.example.serviceReminderVol2.mainFragments.MainActivity;
 
 import java.util.Locale;
 

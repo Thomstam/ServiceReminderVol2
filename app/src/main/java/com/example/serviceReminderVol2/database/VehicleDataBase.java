@@ -1,4 +1,4 @@
-package com.example.serviceReminder.database;
+package com.example.serviceReminderVol2.database;
 
 import android.content.Context;
 
@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.serviceReminder.utilities.Vehicle;
+import com.example.serviceReminderVol2.utilities.Vehicle;
 
 @Database(entities = {Vehicle.class}, version = 8, exportSchema = false)
 public abstract class VehicleDataBase extends RoomDatabase {

@@ -1,4 +1,4 @@
-package com.example.serviceReminder.drawerMainContents;
+package com.example.serviceReminderVol2.drawerMainContents;
 
 import android.Manifest;
 import android.app.Activity;
@@ -23,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.preference.PreferenceManager;
 
-import com.example.serviceReminder.R;
+import com.example.serviceReminderVol2.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package com.example.serviceReminder.utilities;
+package com.example.serviceReminderVol2.utilities;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.example.serviceReminder.R;
+import com.example.serviceReminderVol2.R;
 
 public class CustomAdapter extends BaseAdapter {
     final int[] flags;

@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name" translatable="false">ServiceReminder</string>
+    <string name="app_name" translatable="false">ServiceReminderVol2</string>
 
 
     <string name="soundPreference" translatable="false">sound</string>

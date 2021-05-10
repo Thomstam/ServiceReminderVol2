@@ -1,4 +1,4 @@
-package com.example.serviceReminder.notificationSetup;
+package com.example.serviceReminderVol2.notificationSetup;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -14,9 +14,9 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.preference.PreferenceManager;
 
-import com.example.serviceReminder.R;
-import com.example.serviceReminder.mainFragments.MainActivity;
-import com.example.serviceReminder.utilities.Vehicle;
+import com.example.serviceReminderVol2.R;
+import com.example.serviceReminderVol2.mainFragments.MainActivity;
+import com.example.serviceReminderVol2.utilities.Vehicle;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

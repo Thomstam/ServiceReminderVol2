@@ -5,7 +5,7 @@
 
     <PreferenceCategory>
 
-        <com.example.serviceReminder.drawerMainContents.NavigationHeaderPreferences
+        <com.example.serviceReminderVol2.drawerMainContents.NavigationHeaderPreferences
             android:key="profile_picture"
             app:layout="@layout/navigation_header_main"
             android:summary=""/>

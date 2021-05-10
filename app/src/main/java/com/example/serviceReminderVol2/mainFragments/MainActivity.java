@@ -1,4 +1,4 @@
-package com.example.serviceReminder.mainFragments;
+package com.example.serviceReminderVol2.mainFragments;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -24,15 +24,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
-import com.example.serviceReminder.R;
-import com.example.serviceReminder.database.VehicleViewModel;
-import com.example.serviceReminder.drawerMainContents.DrawerHeaderFragment;
-import com.example.serviceReminder.drawerMainContents.EditProfilePreferences;
-import com.example.serviceReminder.drawerMainContents.SettingsFragment;
-import com.example.serviceReminder.formsPackage.FormSetup;
-import com.example.serviceReminder.notificationSetup.ServiceNotification;
-import com.example.serviceReminder.utilities.Vehicle;
-import com.example.serviceReminder.utilities.VehicleRecyclerView;
+import com.example.serviceReminderVol2.R;
+import com.example.serviceReminderVol2.database.VehicleViewModel;
+import com.example.serviceReminderVol2.drawerMainContents.DrawerHeaderFragment;
+import com.example.serviceReminderVol2.drawerMainContents.EditProfilePreferences;
+import com.example.serviceReminderVol2.drawerMainContents.SettingsFragment;
+import com.example.serviceReminderVol2.formsPackage.FormSetup;
+import com.example.serviceReminderVol2.notificationSetup.ServiceNotification;
+import com.example.serviceReminderVol2.utilities.Vehicle;
+import com.example.serviceReminderVol2.utilities.VehicleRecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

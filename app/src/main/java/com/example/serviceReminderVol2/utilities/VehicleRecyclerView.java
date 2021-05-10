@@ -1,4 +1,4 @@
-package com.example.serviceReminder.utilities;
+package com.example.serviceReminderVol2.utilities;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.serviceReminder.R;
+import com.example.serviceReminderVol2.R;
 
 import java.util.ArrayList;
 import java.util.List;

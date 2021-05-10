@@ -1,4 +1,4 @@
-package com.example.serviceReminder.drawerMainContents;
+package com.example.serviceReminderVol2.drawerMainContents;
 
 import android.Manifest;
 import android.app.Activity;
@@ -11,7 +11,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceFragmentCompat;
 
-import com.example.serviceReminder.R;
+import com.example.serviceReminderVol2.R;
 
 public class DrawerHeaderFragment extends PreferenceFragmentCompat {
 
@@ -22,7 +22,7 @@ public class DrawerHeaderFragment extends PreferenceFragmentCompat {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        setPreferencesFromResource(com.example.serviceReminder.R.xml.drawer_heard_main_preferences, rootKey);
+        setPreferencesFromResource(com.example.serviceReminderVol2.R.xml.drawer_heard_main_preferences, rootKey);
 
         NavigationHeaderPreferences navigationHeaderPreferences = findPreference("profile_picture");
         verifyStoragePermissions(getActivity());

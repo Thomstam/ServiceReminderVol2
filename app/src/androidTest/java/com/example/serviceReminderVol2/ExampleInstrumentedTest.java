@@ -1,4 +1,4 @@
-package com.example.serviceReminder;
+package com.example.serviceReminderVol2;
 
 import android.content.Context;
 

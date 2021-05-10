@@ -1,4 +1,4 @@
-package com.example.serviceReminder.utilities;
+package com.example.serviceReminderVol2.utilities;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.serviceReminder.R;
+import com.example.serviceReminderVol2.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class BottomSheetFragment extends BottomSheetDialogFragment {

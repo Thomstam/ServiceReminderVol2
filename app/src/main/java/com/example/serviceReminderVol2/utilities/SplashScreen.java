@@ -1,4 +1,4 @@
-package com.example.serviceReminder.utilities;
+package com.example.serviceReminderVol2.utilities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,8 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.serviceReminder.R;
-import com.example.serviceReminder.mainFragments.MainActivity;
+import com.example.serviceReminderVol2.R;
+import com.example.serviceReminderVol2.mainFragments.MainActivity;
 
 public class SplashScreen extends AppCompatActivity {
 

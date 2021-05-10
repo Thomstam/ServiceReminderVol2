@@ -1,4 +1,4 @@
-package com.example.serviceReminder.database;
+package com.example.serviceReminderVol2.database;
 
 import android.app.Application;
 
@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.serviceReminder.utilities.Vehicle;
+import com.example.serviceReminderVol2.utilities.Vehicle;
 
 import java.util.List;
 

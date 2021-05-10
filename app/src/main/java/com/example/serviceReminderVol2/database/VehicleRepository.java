@@ -1,11 +1,11 @@
-package com.example.serviceReminder.database;
+package com.example.serviceReminderVol2.database;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.serviceReminder.utilities.Vehicle;
+import com.example.serviceReminderVol2.utilities.Vehicle;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
