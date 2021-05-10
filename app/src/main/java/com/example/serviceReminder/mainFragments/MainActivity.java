@@ -1,17 +1,5 @@
 package com.example.serviceReminder.mainFragments;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.preference.PreferenceManager;
-
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -21,23 +9,29 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
-import android.media.audiofx.BassBoost;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
+
+import com.example.serviceReminder.R;
+import com.example.serviceReminder.database.VehicleViewModel;
 import com.example.serviceReminder.drawerMainContents.DrawerHeaderFragment;
 import com.example.serviceReminder.drawerMainContents.EditProfilePreferences;
+import com.example.serviceReminder.drawerMainContents.SettingsFragment;
 import com.example.serviceReminder.formsPackage.FormSetup;
 import com.example.serviceReminder.notificationSetup.ServiceNotification;
-import com.example.serviceReminder.drawerMainContents.SettingsFragment;
-import com.example.serviceReminder.R;
-import com.example.serviceReminder.utilities.SplashScreen;
 import com.example.serviceReminder.utilities.Vehicle;
-import com.example.serviceReminder.database.VehicleViewModel;
 import com.example.serviceReminder.utilities.VehicleRecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -56,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
     private final HomeScreenFragments homeScreenFragments = new HomeScreenFragments();
     private final FavoritesScreenFragment favoritesScreenFragment = new FavoritesScreenFragment();
     private final UpcomingServicesScreenFragment upcomingServicesScreenFragment = new UpcomingServicesScreenFragment();
-    private static final String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.WRITE_SETTINGS};
-    public static final int REQUEST_SETTINGS = 1;
 
 
     @Override

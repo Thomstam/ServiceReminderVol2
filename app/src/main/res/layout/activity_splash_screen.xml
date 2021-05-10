@@ -14,10 +14,4 @@
         android:background="@drawable/splash_screen_welcome_photo"
         android:contentDescription="welcomeScreen" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragmentSplashScreen"/>
-
-
 </RelativeLayout>
